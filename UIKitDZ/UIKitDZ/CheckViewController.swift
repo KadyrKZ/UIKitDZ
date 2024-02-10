@@ -4,13 +4,15 @@
 import UIKit
 
 /// checkViewController
-class CheckViewController: UIViewController {
+final class CheckViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemYellow
+        print("3 окно")
     }
 
-    @IBAction func printCheck(_ sender: Any) {
+    // MARK: - IBAction
+
+    @IBAction private func printCheck(_ sender: Any) {
         let alertController = UIAlertController(title: "Вы хотите оплатить чек? ", message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "Да", style: .default) { _ in
             guard let vc = UIStoryboard(name: "Main", bundle: Bundle.main)

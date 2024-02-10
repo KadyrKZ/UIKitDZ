@@ -4,14 +4,15 @@
 import UIKit
 
 /// DetailViewController
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        print("2 окно ")
     }
 
-    @IBAction func checkButton(_ sender: Any) {
+    // MARK: - IBAction
+
+    @IBAction private func checkButton(_ sender: Any) {
         let alertController = UIAlertController(title: "Выставить счет? ", message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "Чек", style: .default) { _ in
             guard let vc = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -19,7 +20,6 @@ class DetailViewController: UIViewController {
             else { return }
             self.navigationController?.pushViewController(vc, animated: true)
         }
-
         let cancel = UIAlertAction(title: "cancel", style: .cancel) { _ in
         }
 

@@ -4,11 +4,11 @@
 import UIKit
 
 /// ThankYouViewController page
-class ThankYouViewController: UIViewController {
+final class ThankYouViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemYellow
+        print("4 окно")
         // Do any additional setup after loading the view.
     }
 
