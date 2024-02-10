@@ -5,6 +5,7 @@ import UIKit
 
 /// ViewController
 class ViewController: UIViewController {
+    // MARK: - Visual Components
     private lazy var startButton: UIButton = {
         let button = UIButton(frame: CGRect(
             x: 20,
@@ -73,7 +74,7 @@ class ViewController: UIViewController {
 //        label.text = text
 //        label.font = .boldSystemFont(ofSize: 20)
 //        label.isHidden = isHidden
-//        view.addSubview(label)
+//        return label
 //    }
 //
 //    func resultLabel(text: String, rect: CGRect, isHidden: Bool){
@@ -85,7 +86,9 @@ class ViewController: UIViewController {
 //        view.addSubview(label)
 //    }
 
-    func reverseText(_ input: String) {
+    // MARK: - private function
+
+    private func reverseText(_ input: String) {
         let model = Model()
         let result = model.reverseText(input)
         outputLabel.text = result
