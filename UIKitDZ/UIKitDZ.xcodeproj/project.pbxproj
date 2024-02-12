@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9DCE13C2B795FCE0011D274 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DCE13B2B795FCE0011D274 /* MusicViewController.swift */; };
+		C9DCE13E2B7975860011D274 /* Let.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9DCE13D2B7975860011D274 /* Let.mp3 */; };
+		C9DCE1402B79758C0011D274 /* Yesterday.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9DCE13F2B79758C0011D274 /* Yesterday.mp3 */; };
+		C9DCE1422B7975A80011D274 /* Queen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9DCE1412B7975A80011D274 /* Queen.mp3 */; };
 		C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F075982B74DCB7004C3097 /* AppDelegate.swift */; };
 		C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */; };
 		C9F0759D2B74DCB7004C3097 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0759C2B74DCB7004C3097 /* ViewController.swift */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9DCE13B2B795FCE0011D274 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
+		C9DCE13D2B7975860011D274 /* Let.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Let.mp3; sourceTree = "<group>"; };
+		C9DCE13F2B79758C0011D274 /* Yesterday.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Yesterday.mp3; sourceTree = "<group>"; };
+		C9DCE1412B7975A80011D274 /* Queen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Queen.mp3; sourceTree = "<group>"; };
 		C9F075952B74DCB7004C3097 /* UIKitDZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitDZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F075982B74DCB7004C3097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,10 +67,14 @@
 				C9F075982B74DCB7004C3097 /* AppDelegate.swift */,
 				C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */,
 				C9F0759C2B74DCB7004C3097 /* ViewController.swift */,
+				C9DCE13B2B795FCE0011D274 /* MusicViewController.swift */,
 				C9F0759E2B74DCB7004C3097 /* Main.storyboard */,
 				C9F075A12B74DCB8004C3097 /* Assets.xcassets */,
 				C9F075A32B74DCB8004C3097 /* LaunchScreen.storyboard */,
 				C9F075A62B74DCB8004C3097 /* Info.plist */,
+				C9DCE13D2B7975860011D274 /* Let.mp3 */,
+				C9DCE13F2B79758C0011D274 /* Yesterday.mp3 */,
+				C9DCE1412B7975A80011D274 /* Queen.mp3 */,
 			);
 			path = UIKitDZ;
 			sourceTree = "<group>";
@@ -127,7 +139,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9DCE1422B7975A80011D274 /* Queen.mp3 in Resources */,
+				C9DCE13E2B7975860011D274 /* Let.mp3 in Resources */,
 				C9F075A52B74DCB8004C3097 /* LaunchScreen.storyboard in Resources */,
+				C9DCE1402B79758C0011D274 /* Yesterday.mp3 in Resources */,
 				C9F075A22B74DCB8004C3097 /* Assets.xcassets in Resources */,
 				C9F075A02B74DCB7004C3097 /* Main.storyboard in Resources */,
 			);
@@ -183,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9DCE13C2B795FCE0011D274 /* MusicViewController.swift in Sources */,
 				C9F0759D2B74DCB7004C3097 /* ViewController.swift in Sources */,
 				C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */,
 				C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */,
