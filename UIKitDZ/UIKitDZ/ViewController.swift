@@ -3,14 +3,14 @@
 
 import UIKit
 
-/// ViewController
-class ViewController: UIViewController {
+/// ViewController главный экран
+final class ViewController: UIViewController {
     var musicViewController: MusicViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil) // Укажите имя вашего сториборда
+//MARK: Подключаю контроллер из сториборда для дальнейшей работы
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         musicViewController = storyboard
             .instantiateViewController(withIdentifier: "MusicViewController") as? MusicViewController
     }

@@ -4,33 +4,44 @@
 import AVFoundation
 import UIKit
 
-/// MusicViewController
-class MusicViewController: UIViewController {
-    @IBOutlet var slider: UISlider!
-    @IBOutlet var pauseImage: UIImageView!
-    @IBOutlet var volumeSlider: UISlider!
-    @IBOutlet var photoMusicImage: UIImageView!
-    @IBOutlet var groupNameLabel: UILabel!
-    @IBOutlet var timeMusicLabel: UILabel!
-    @IBOutlet var beforeMusicImage: UIImageView!
-    @IBOutlet var nextMusicImage: UIImageView!
-    @IBOutlet var musicName: UILabel!
-    var player = AVAudioPlayer()
-    var timer: Timer?
+/// MusicViewController - окно где можно управлять музыкой
+
+final class MusicViewController: UIViewController {
+    // MARK: Все элементы из сториборда
+
+    @IBOutlet private var slider: UISlider!
+    @IBOutlet private var pauseImage: UIImageView!
+    @IBOutlet private var volumeSlider: UISlider!
+    @IBOutlet private var photoMusicImage: UIImageView!
+    @IBOutlet private var groupNameLabel: UILabel!
+    @IBOutlet private var timeMusicLabel: UILabel!
+    @IBOutlet private var beforeMusicImage: UIImageView!
+    @IBOutlet private var nextMusicImage: UIImageView!
+    @IBOutlet private var musicName: UILabel!
+    private var player = AVAudioPlayer()
+    private var timer: Timer?
     var currentMusicIndex = 1
 
-    let musics = [
+    // MARK: Массив для хранения музыки
+
+    private let musics = [
         Music(name: "Let it be", group: "The Beatles"),
         Music(name: "Yesterday", group: "The Beatles"),
     ]
-    // var selectedMusic = muzz
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // MARK: подключения слайдеров к их action
 
         volumeSlider.addTarget(self, action: #selector(changeVolume), for: .valueChanged)
         slider.isEnabled = true
         slider.addTarget(self, action: #selector(changeSlider), for: .valueChanged)
+
+        // MARK: Добавление управляемости в фото
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pauseTapped))
+
         pauseImage.isUserInteractionEnabled = true
         pauseImage.addGestureRecognizer(tapGestureRecognizer)
 
@@ -38,11 +49,15 @@ class MusicViewController: UIViewController {
 
         playMusic(at: currentMusicIndex)
 
+        // MARK: Изображения на фон
+
         let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
         backgroundImageView.image = UIImage(named: "background")
         backgroundImageView.contentMode = .scaleAspectFill
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
+
+        // MARK: Жесты для image преведущий трек и следущий трек
 
         let previousTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(previousMusicTapped))
         beforeMusicImage.isUserInteractionEnabled = true
@@ -53,14 +68,19 @@ class MusicViewController: UIViewController {
         nextMusicImage.addGestureRecognizer(nextTapGestureRecognizer)
     }
 
+    // MARK: При закрытие стоп музыки
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
         player.stop()
         timer?.invalidate()
         timer = nil
     }
 
-    func startTimer() {
+    // MARK: Таймер плюс обновляет слайдер тоже
+
+    final func startTimer() {
         timer = Timer.scheduledTimer(
             timeInterval: 1.0,
             target: self,
@@ -81,7 +101,7 @@ class MusicViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    private func playMusic(at index: Int) {
+    final func playMusic(at index: Int) {
         let music = musics[index]
         groupNameLabel.text = music.group
         musicName.text = music.name
