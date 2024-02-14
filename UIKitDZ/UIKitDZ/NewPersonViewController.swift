@@ -3,8 +3,9 @@
 
 import UIKit
 
-/// NewPersonViewController
-class NewPersonViewController: UIViewController {
+/// NewPersonViewController - контроллер для добавление новых блоков людей с днями рождения
+final class NewPersonViewController: UIViewController {
+    //MARK: Visual Properties
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("Calcel", for: .normal)
@@ -42,27 +43,7 @@ class NewPersonViewController: UIViewController {
         // button.addTarget(self, action: #selector(loginButtonClick), for: .touchUpInside)
         return button
     }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        setupUI()
-    }
-
-    private func makeTextfield(text: String) -> UITextField {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.placeholder = text
-        textField.font = .systemFont(ofSize: 14)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(textField)
-        NSLayoutConstraint.activate([
-            textField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            textField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        ])
-        return textField
-    }
-
+    
     private lazy var birthdayField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
@@ -104,74 +85,12 @@ class NewPersonViewController: UIViewController {
         return textField
     }()
 
-    @objc func clickTelegaField() {
-        let alertController = UIAlertController(title: "Please enter Telegram", message: nil, preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.placeholder = "Typing Telegram"
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        let action = UIAlertAction(title: "Ok", style: .default) { _ in
-            if let textField = alertController.textFields?.first, let telegram = textField.text {
-                self.telegramField.text = telegram
-            }
-        }
-
-        alertController.addAction(action)
-        alertController.addAction(cancel)
-        alertController.preferredAction = action
-        present(alertController, animated: true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setupUI()
     }
-
-    let datePicker = UIDatePicker()
-    let agePicker = UIPickerView()
-    let genderPicker = UIPickerView()
-
-    private func createToolbar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-        toolbar.setItems([doneButton], animated: true)
-        return toolbar
-    }
-
-    private func createAgeToolBar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let okButton = UIBarButtonItem(title: "ok", style: .done, target: nil, action: #selector(okPressed))
-        toolbar.setItems([flexibleSpace, okButton], animated: true)
-        return toolbar
-    }
-
-    private func createGenderToolBar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let okButton = UIBarButtonItem(title: "ok", style: .done, target: nil, action: #selector(okGenderPressed))
-        toolbar.setItems([flexibleSpace, okButton], animated: true)
-        return toolbar
-    }
-
-    private func createAgePicker() {
-        agePicker.dataSource = self
-        agePicker.delegate = self
-        ageField.inputView = agePicker
-        ageField.inputAccessoryView = createAgeToolBar()
-    }
-
-    private func createDatePicker() {
-        datePicker.preferredDatePickerStyle = .inline
-        birthdayField.inputView = datePicker
-        birthdayField.inputAccessoryView = createToolbar()
-    }
-
-    private func createGenderPicker() {
-        genderPicker.dataSource = self
-        genderPicker.delegate = self
-        genderField.inputView = genderPicker
-        genderField.inputAccessoryView = createGenderToolBar()
-    }
-
+    //MARK: Весь визуал в этом функции
     private func setupUI() {
         let fullNameLabel = makeLabel(text: "Name Surname")
         let fullNameField = makeTextfield(text: "Typing Name Surname")
@@ -227,6 +146,71 @@ class NewPersonViewController: UIViewController {
         ])
     }
 
+    //MARK: Функции ддя создание элементов
+    private func makeTextfield(text: String) -> UITextField {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.placeholder = text
+        textField.font = .systemFont(ofSize: 14)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textField)
+        NSLayoutConstraint.activate([
+            textField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            textField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
+        return textField
+    }
+
+    let datePicker = UIDatePicker()
+    let agePicker = UIPickerView()
+    let genderPicker = UIPickerView()
+
+    private func createToolbar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneButton], animated: true)
+        return toolbar
+    }
+
+    private func createAgeToolBar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let okButton = UIBarButtonItem(title: "ok", style: .done, target: nil, action: #selector(okPressed))
+        toolbar.setItems([flexibleSpace, okButton], animated: true)
+        return toolbar
+    }
+
+    private func createGenderToolBar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let okButton = UIBarButtonItem(title: "ok", style: .done, target: nil, action: #selector(okGenderPressed))
+        toolbar.setItems([flexibleSpace, okButton], animated: true)
+        return toolbar
+    }
+
+    private func createAgePicker() {
+        agePicker.dataSource = self
+        agePicker.delegate = self
+        ageField.inputView = agePicker
+        ageField.inputAccessoryView = createAgeToolBar()
+    }
+
+    private func createDatePicker() {
+        datePicker.preferredDatePickerStyle = .inline
+        birthdayField.inputView = datePicker
+        birthdayField.inputAccessoryView = createToolbar()
+    }
+
+    private func createGenderPicker() {
+        genderPicker.dataSource = self
+        genderPicker.delegate = self
+        genderField.inputView = genderPicker
+        genderField.inputAccessoryView = createGenderToolBar()
+    }
+
     private func makeLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
@@ -264,12 +248,31 @@ class NewPersonViewController: UIViewController {
         genderField.text = genderText
         view.endEditing(true)
     }
+    //MARK: Оброботчики событие
+    @objc func clickTelegaField() {
+        let alertController = UIAlertController(title: "Please enter Telegram", message: nil, preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "Typing Telegram"
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let action = UIAlertAction(title: "Ok", style: .default) { _ in
+            if let textField = alertController.textFields?.first, let telegram = textField.text {
+                self.telegramField.text = telegram
+            }
+        }
+
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+        alertController.preferredAction = action
+        present(alertController, animated: true)
+    }
+
 
     @objc func clickAdd() {
         print("будущем будет)")
     }
 }
-
+//MARK: Реализация протоколов пикера
 extension NewPersonViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1

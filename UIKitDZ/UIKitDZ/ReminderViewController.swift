@@ -3,10 +3,15 @@
 
 import UIKit
 
-/// ReminderViewController
-class ReminderViewController: UIViewController {
+/// ReminderViewController - экран где отображается дни рождение знакомых
+final class ReminderViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+//MARK: Весь визуал в этом функции
+    private func setupUI(){
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "plus"),
             style: .done,
@@ -51,8 +56,8 @@ class ReminderViewController: UIViewController {
             infoPerson2.heightAnchor.constraint(equalToConstant: 82),
         ])
     }
-
-    func createInfoList(image: UIImage?, title: String, description: String, days: String) -> UIView {
+    //MARK: Большая функция для блока
+    private func createInfoList(image: UIImage?, title: String, description: String, days: String) -> UIView {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = .systemPurple
@@ -110,19 +115,9 @@ class ReminderViewController: UIViewController {
         // Возвращаем созданный контейнерный UIView
         return containerView
     }
-
+    //MARK: Оброботчики событие
     @objc func clickPlus() {
         let vc = NewPersonViewController()
         navigationController?.present(vc, animated: true)
     }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
 }

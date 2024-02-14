@@ -3,17 +3,19 @@
 
 import UIKit
 
-/// ViewController
-class ViewController: UIViewController {
-    lazy var cakeImage: UIImageView = {
+/// ViewController  - главный экран где юзер делает логин
+final class ViewController: UIViewController {
+    //MARK:  Visual Properties
+    // Изображения для лого
+    private lazy var cakeImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Image")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.frame = CGRect(origin: .zero, size: CGSize(width: 125, height: 125))
         return imageView
     }()
-
-    lazy var emailField: UITextField = {
+// Поля где юзер пишет логин
+    private lazy var emailField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.placeholder = "typing email"
@@ -21,8 +23,8 @@ class ViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
-
-    lazy var passField: UITextField = {
+    // Поля где юзер пишет пароль
+    private lazy var passField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.placeholder = "typing password"
@@ -31,8 +33,8 @@ class ViewController: UIViewController {
         textField.isSecureTextEntry = true
         return textField
     }()
-
-    lazy var showHideButton: UIButton = {
+    // Кнопка для скрытие и показа пароля виде глаза
+    private lazy var showHideButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         button.tintColor = .systemGray
@@ -40,8 +42,8 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         return button
     }()
-
-    lazy var loginButton: UIButton = {
+    // Кнопка для логина
+    private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
         button.backgroundColor = .systemRed
@@ -50,8 +52,8 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(loginButtonClick), for: .touchUpInside)
         return button
     }()
-
-    lazy var faceSwitch: UISwitch = {
+ ///Swicht для файс айди
+    private lazy var faceSwitch: UISwitch = {
         let faceSwitch = UISwitch()
         faceSwitch.translatesAutoresizingMaskIntoConstraints = false
         return faceSwitch
@@ -61,7 +63,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-
+//MARK: Весь визуал в этом функции
     private func setupUI() {
         let loginLabel = makeLabel(
             text: "Birthday Reminder",
@@ -100,7 +102,7 @@ class ViewController: UIViewController {
         view.addSubview(showHideButton)
         view.addSubview(faceIDLabel)
         view.addSubview(faceSwitch)
-
+//MARK: Констрейнты для поставки всех элементов
         NSLayoutConstraint.activate([
             cakeImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cakeImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
@@ -134,8 +136,8 @@ class ViewController: UIViewController {
             faceSwitch.leadingAnchor.constraint(equalTo: faceIDLabel.trailingAnchor, constant: 20),
         ])
     }
-
-    func makeLabel(text: String, size: CGFloat, color: UIColor) -> UILabel {
+//MARK: Функция для созадние лейблов
+    private func makeLabel(text: String, size: CGFloat, color: UIColor) -> UILabel {
         let label = UILabel()
         label.text = text
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +148,7 @@ class ViewController: UIViewController {
         label.textAlignment = .center
         return label
     }
-
+//MARK: Оброботчики событие
     @objc func loginButtonClick() {
         let vc = ReminderViewController()
         navigationController?.pushViewController(vc, animated: true)
