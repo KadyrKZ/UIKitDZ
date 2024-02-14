@@ -20,7 +20,7 @@ final class DetailViewController: UIViewController {
             else { return }
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        let cancel = UIAlertAction(title: "cancel", style: .cancel) { _ in
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
         }
         alertController.addAction(action)
         alertController.addAction(cancel)

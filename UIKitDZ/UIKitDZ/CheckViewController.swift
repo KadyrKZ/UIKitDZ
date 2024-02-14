@@ -16,7 +16,7 @@ final class CheckViewController: UIViewController {
         let alertController = UIAlertController(title: "Вы хотите оплатить чек? ", message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "Да", style: .default) { _ in
         }
-        let cancel = UIAlertAction(title: "cancel", style: .cancel) { _ in
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
         }
         alertController.addAction(action)
         alertController.addAction(cancel)
