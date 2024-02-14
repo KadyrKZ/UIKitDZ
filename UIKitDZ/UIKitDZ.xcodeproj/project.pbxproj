@@ -15,7 +15,6 @@
 		C9F075A52B74DCB8004C3097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F075A32B74DCB8004C3097 /* LaunchScreen.storyboard */; };
 		C9F075B12B75F488004C3097 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F075B02B75F488004C3097 /* DetailViewController.swift */; };
 		C9F075B32B760529004C3097 /* CheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F075B22B760529004C3097 /* CheckViewController.swift */; };
-		C9F075B52B761A07004C3097 /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F075B42B761A07004C3097 /* ThankYouViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		C9F075A62B74DCB8004C3097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9F075B02B75F488004C3097 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C9F075B22B760529004C3097 /* CheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewController.swift; sourceTree = "<group>"; };
-		C9F075B42B761A07004C3097 /* ThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +64,8 @@
 				C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */,
 				C9F0759C2B74DCB7004C3097 /* ViewController.swift */,
 				C9F075B02B75F488004C3097 /* DetailViewController.swift */,
-				C9F075B42B761A07004C3097 /* ThankYouViewController.swift */,
-				C9F0759E2B74DCB7004C3097 /* Main.storyboard */,
 				C9F075B22B760529004C3097 /* CheckViewController.swift */,
+				C9F0759E2B74DCB7004C3097 /* Main.storyboard */,
 				C9F075A12B74DCB8004C3097 /* Assets.xcassets */,
 				C9F075A32B74DCB8004C3097 /* LaunchScreen.storyboard */,
 				C9F075A62B74DCB8004C3097 /* Info.plist */,
@@ -195,7 +192,6 @@
 				C9F0759D2B74DCB7004C3097 /* ViewController.swift in Sources */,
 				C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */,
 				C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */,
-				C9F075B52B761A07004C3097 /* ThankYouViewController.swift in Sources */,
 				C9F075B12B75F488004C3097 /* DetailViewController.swift in Sources */,
 				C9F075B32B760529004C3097 /* CheckViewController.swift in Sources */,
 			);
