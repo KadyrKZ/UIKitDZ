@@ -5,7 +5,8 @@ import UIKit
 
 /// NewPersonViewController - контроллер для добавление новых блоков людей с днями рождения
 final class NewPersonViewController: UIViewController {
-    //MARK: Visual Properties
+    // MARK: Visual Properties
+
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("Calcel", for: .normal)
@@ -43,10 +44,13 @@ final class NewPersonViewController: UIViewController {
         // button.addTarget(self, action: #selector(loginButtonClick), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var birthdayField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+        var bottomLine = UIView()
+        bottomLine.frame = CGRect(x: 0, y: 22, width: 335, height: 1)
+        bottomLine.backgroundColor = .systemGray3
+        textField.addSubview(bottomLine)
         textField.placeholder = "Typing Birthday"
         textField.font = .systemFont(ofSize: 14)
         view.addSubview(textField)
@@ -56,7 +60,10 @@ final class NewPersonViewController: UIViewController {
 
     private lazy var telegramField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+        var bottomLine = UIView()
+        bottomLine.frame = CGRect(x: 0, y: 22, width: 335, height: 1)
+        bottomLine.backgroundColor = .systemGray3
+        textField.addSubview(bottomLine)
         textField.placeholder = "Typing Telegram"
         textField.font = .systemFont(ofSize: 14)
         textField.addTarget(self, action: #selector(clickTelegaField), for: .editingDidBegin)
@@ -67,7 +74,10 @@ final class NewPersonViewController: UIViewController {
 
     private lazy var ageField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+        var bottomLine = UIView()
+        bottomLine.frame = CGRect(x: 0, y: 22, width: 335, height: 1)
+        bottomLine.backgroundColor = .systemGray3
+        textField.addSubview(bottomLine)
         textField.placeholder = "Typing Age"
         textField.font = .systemFont(ofSize: 14)
         view.addSubview(textField)
@@ -77,7 +87,10 @@ final class NewPersonViewController: UIViewController {
 
     private lazy var genderField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+        var bottomLine = UIView()
+        bottomLine.frame = CGRect(x: 0, y: 22, width: 335, height: 1)
+        bottomLine.backgroundColor = .systemGray3
+        textField.addSubview(bottomLine)
         textField.placeholder = "Indicate Gender"
         textField.font = .systemFont(ofSize: 14)
         view.addSubview(textField)
@@ -90,7 +103,9 @@ final class NewPersonViewController: UIViewController {
         view.backgroundColor = .white
         setupUI()
     }
-    //MARK: Весь визуал в этом функции
+
+    // MARK: Весь визуал в этом функции
+
     private func setupUI() {
         let fullNameLabel = makeLabel(text: "Name Surname")
         let fullNameField = makeTextfield(text: "Typing Name Surname")
@@ -146,10 +161,14 @@ final class NewPersonViewController: UIViewController {
         ])
     }
 
-    //MARK: Функции ддя создание элементов
+    // MARK: Функции ддя создание элементов
+
     private func makeTextfield(text: String) -> UITextField {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+        let bottomLine = UIView()
+        bottomLine.frame = CGRect(x: 0, y: 22, width: 335, height: 1)
+        bottomLine.backgroundColor = .systemGray3
+        textField.addSubview(bottomLine)
         textField.placeholder = text
         textField.font = .systemFont(ofSize: 14)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -248,7 +267,9 @@ final class NewPersonViewController: UIViewController {
         genderField.text = genderText
         view.endEditing(true)
     }
-    //MARK: Оброботчики событие
+
+    // MARK: Оброботчики событие
+
     @objc func clickTelegaField() {
         let alertController = UIAlertController(title: "Please enter Telegram", message: nil, preferredStyle: .alert)
         alertController.addTextField { textField in
@@ -267,12 +288,13 @@ final class NewPersonViewController: UIViewController {
         present(alertController, animated: true)
     }
 
-
     @objc func clickAdd() {
         print("будущем будет)")
     }
 }
-//MARK: Реализация протоколов пикера
+
+// MARK: Реализация протоколов пикера
+
 extension NewPersonViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1

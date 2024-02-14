@@ -5,7 +5,8 @@ import UIKit
 
 /// ViewController  - главный экран где юзер делает логин
 final class ViewController: UIViewController {
-    //MARK:  Visual Properties
+    // MARK: Visual Properties
+
     // Изображения для лого
     private lazy var cakeImage: UIImageView = {
         let imageView = UIImageView()
@@ -14,25 +15,36 @@ final class ViewController: UIViewController {
         imageView.frame = CGRect(origin: .zero, size: CGSize(width: 125, height: 125))
         return imageView
     }()
-// Поля где юзер пишет логин
+
+    // Поля где юзер пишет логин
     private lazy var emailField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+        textField.borderStyle = .none
         textField.placeholder = "typing email"
         textField.font = .systemFont(ofSize: 14)
+        var bottomLine = UIView()
+        bottomLine.frame = CGRect(x: 0, y: 22, width: 335, height: 1)
+        bottomLine.backgroundColor = .systemGray3
+        textField.addSubview(bottomLine)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+
     // Поля где юзер пишет пароль
     private lazy var passField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
+        textField.borderStyle = .none
         textField.placeholder = "typing password"
         textField.font = .systemFont(ofSize: 14)
+        var bottomLine = UIView()
+        bottomLine.frame = CGRect(x: 0, y: 22, width: 335, height: 1)
+        bottomLine.backgroundColor = .systemGray3
+        textField.addSubview(bottomLine)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.isSecureTextEntry = true
         return textField
     }()
+
     // Кнопка для скрытие и показа пароля виде глаза
     private lazy var showHideButton: UIButton = {
         let button = UIButton()
@@ -42,17 +54,19 @@ final class ViewController: UIViewController {
         button.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         return button
     }()
+
     // Кнопка для логина
     private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.backgroundColor = .systemRed
+        button.backgroundColor = .red1
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = 12
         button.addTarget(self, action: #selector(loginButtonClick), for: .touchUpInside)
         return button
     }()
- ///Swicht для файс айди
+
+    /// Swicht для файс айди
     private lazy var faceSwitch: UISwitch = {
         let faceSwitch = UISwitch()
         faceSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -63,30 +77,32 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-//MARK: Весь визуал в этом функции
+
+    // MARK: Весь визуал в этом функции
+
     private func setupUI() {
         let loginLabel = makeLabel(
             text: "Birthday Reminder",
             size: 18,
-            color: .systemIndigo
+            color: .red1
         )
 
         let signLabel = makeLabel(
             text: "Sign in",
             size: 26,
-            color: .systemRed
+            color: .red1
         )
 
         let emailLabel = makeLabel(
             text: "Email",
             size: 16,
-            color: .systemRed
+            color: .red1
         )
 
         let passwordLabel = makeLabel(
             text: "Password",
             size: 16,
-            color: .systemRed
+            color: .red1
         )
 
         let faceIDLabel = makeLabel(text: "Use faceID", size: 14, color: .black)
@@ -102,7 +118,9 @@ final class ViewController: UIViewController {
         view.addSubview(showHideButton)
         view.addSubview(faceIDLabel)
         view.addSubview(faceSwitch)
-//MARK: Констрейнты для поставки всех элементов
+
+        // MARK: Констрейнты для поставки всех элементов
+
         NSLayoutConstraint.activate([
             cakeImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cakeImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
@@ -136,7 +154,9 @@ final class ViewController: UIViewController {
             faceSwitch.leadingAnchor.constraint(equalTo: faceIDLabel.trailingAnchor, constant: 20),
         ])
     }
-//MARK: Функция для созадние лейблов
+
+    // MARK: Функция для созадние лейблов
+
     private func makeLabel(text: String, size: CGFloat, color: UIColor) -> UILabel {
         let label = UILabel()
         label.text = text
@@ -148,7 +168,9 @@ final class ViewController: UIViewController {
         label.textAlignment = .center
         return label
     }
-//MARK: Оброботчики событие
+
+    // MARK: Оброботчики событие
+
     @objc func loginButtonClick() {
         let vc = ReminderViewController()
         navigationController?.pushViewController(vc, animated: true)

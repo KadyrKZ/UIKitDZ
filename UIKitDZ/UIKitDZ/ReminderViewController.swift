@@ -5,13 +5,14 @@ import UIKit
 
 /// ReminderViewController - экран где отображается дни рождение знакомых
 final class ReminderViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-//MARK: Весь визуал в этом функции
-    private func setupUI(){
+
+    // MARK: Весь визуал в этом функции
+
+    private func setupUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "plus"),
             style: .done,
@@ -20,48 +21,50 @@ final class ReminderViewController: UIViewController {
         )
         view.backgroundColor = .systemBackground
         let infoPerson = createInfoList(
-            image: UIImage(named: "Image"),
-            title: "Kadyr",
-            description: "ISANII dsjcods",
-            days: "32 days"
+            image: UIImage(named: "miss"),
+            title: "Helena Link",
+            description: "10.03 - turns 25!",
+            days: "3 days"
         )
         view.addSubview(infoPerson)
         let infoPerson1 = createInfoList(
-            image: UIImage(named: "Image"),
-            title: "Kadyr",
-            description: "ISANII dsjcods",
-            days: "32 days"
+            image: UIImage(named: "dama"),
+            title: "Verona Tusk",
+            description: "20.03 - turns 39",
+            days: "12 days"
         )
         view.addSubview(infoPerson1)
         let infoPerson2 = createInfoList(
-            image: UIImage(named: "Image"),
-            title: "Kadyr",
-            description: "ISANII dsjcods",
+            image: UIImage(named: "man"),
+            title: "Alex Smith",
+            description: "21.04 - turns 51",
             days: "32 days"
         )
         view.addSubview(infoPerson2)
 
         NSLayoutConstraint.activate([
-            infoPerson.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            infoPerson.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             infoPerson.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             infoPerson.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            infoPerson.heightAnchor.constraint(equalToConstant: 82),
+            infoPerson.heightAnchor.constraint(equalToConstant: 93),
             infoPerson1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             infoPerson1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             infoPerson1.topAnchor.constraint(equalTo: infoPerson.bottomAnchor, constant: 20),
-            infoPerson1.heightAnchor.constraint(equalToConstant: 82),
+            infoPerson1.heightAnchor.constraint(equalToConstant: 93),
             infoPerson2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             infoPerson2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             infoPerson2.topAnchor.constraint(equalTo: infoPerson1.bottomAnchor, constant: 20),
-            infoPerson2.heightAnchor.constraint(equalToConstant: 82),
+            infoPerson2.heightAnchor.constraint(equalToConstant: 93),
         ])
     }
-    //MARK: Большая функция для блока
+
+    // MARK: Большая функция для блока
+
     private func createInfoList(image: UIImage?, title: String, description: String, days: String) -> UIView {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .systemPurple
-        containerView.layer.cornerRadius = 10
+        containerView.backgroundColor = .purple1
+        containerView.layer.cornerRadius = 12
 
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
@@ -82,6 +85,8 @@ final class ReminderViewController: UIViewController {
 
         let rightLabel = UILabel()
         rightLabel.text = days
+        rightLabel.textColor = .purple2
+        rightLabel.textAlignment = .center
         rightLabel.numberOfLines = 0
         rightLabel.lineBreakMode = .byWordWrapping
         rightLabel.font = UIFont(name: "Verdana-Bold", size: 14)
@@ -89,8 +94,8 @@ final class ReminderViewController: UIViewController {
         containerView.addSubview(rightLabel)
 
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
+            imageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
             imageView.widthAnchor.constraint(equalToConstant: 75),
             imageView.heightAnchor.constraint(equalToConstant: 75)
 
@@ -98,16 +103,16 @@ final class ReminderViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             leftLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-            leftLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            leftLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 25),
         ])
 
         NSLayoutConstraint.activate([
             descriptionLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            descriptionLabel.topAnchor.constraint(equalTo: leftLabel.bottomAnchor, constant: 10),
+            descriptionLabel.topAnchor.constraint(equalTo: leftLabel.bottomAnchor, constant: 8),
         ])
 
         NSLayoutConstraint.activate([
-            rightLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
+            rightLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 25),
             rightLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
             rightLabel.widthAnchor.constraint(equalToConstant: 50)
         ])
@@ -115,7 +120,9 @@ final class ReminderViewController: UIViewController {
         // Возвращаем созданный контейнерный UIView
         return containerView
     }
-    //MARK: Оброботчики событие
+
+    // MARK: Оброботчики событие
+
     @objc func clickPlus() {
         let vc = NewPersonViewController()
         navigationController?.present(vc, animated: true)
