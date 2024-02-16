@@ -67,6 +67,7 @@ class ViewController: UIViewController {
             bagBlockView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             bagBlockView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             bagBlockView.heightAnchor.constraint(equalToConstant: 80),
+
         ])
     }
 
