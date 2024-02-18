@@ -3,12 +3,13 @@
 
 import UIKit
 
-/// DetailViewController
+/// DetailViewController - контроллер для детального выбора кофе
 final class DetailViewController: UIViewController {
+    /// Приватные экземпляры для вью
     var loginView = UIView()
 
     private lazy var coffeeIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "coffee"))
+        let imageView = UIImageView(image: .coffee)
         loginView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -19,7 +20,7 @@ final class DetailViewController: UIViewController {
         button.setTitle("Заказать", for: .normal)
         button.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         view.addSubview(button)
-        button.backgroundColor = .systemCyan
+        button.backgroundColor = .buttonActive
         button.layer.cornerRadius = 15
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -27,7 +28,7 @@ final class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        view.backgroundColor = .white
         setupUI()
     }
 
@@ -41,13 +42,13 @@ final class DetailViewController: UIViewController {
 
         let modLabel = createLabel(text: "Модификация", size: 18, font: "Verdana-Bold", color: .black, in: view)
 
-        let blockView = createBlockView(color: .systemGray, height: 165)
+        let blockView = createBlockView(color: .blockCoffee, height: 165)
 
         let blockViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(blockViewTapped))
         blockView.addGestureRecognizer(blockViewTapGesture)
         blockView.isUserInteractionEnabled = true
 
-        let addBlockView = createBlockView(color: .systemGray, height: 165)
+        let addBlockView = createBlockView(color: .blockCoffee, height: 165)
 
         let addBlockViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(addBlockViewTapped))
         addBlockView.addGestureRecognizer(addBlockViewTapGesture)
@@ -88,7 +89,7 @@ final class DetailViewController: UIViewController {
 
     private func createView() {
         loginView.frame = CGRect(x: 0, y: 0, width: Int(view.bounds.width), height: 350)
-        loginView.backgroundColor = .white
+        loginView.backgroundColor = .blockBroun
         loginView.layer.cornerRadius = 20
         view.addSubview(loginView)
     }
@@ -100,7 +101,7 @@ final class DetailViewController: UIViewController {
         blockView.translatesAutoresizingMaskIntoConstraints = false
 
         let imageView = createImageView(imageName: "coffee", in: blockView)
-        let label = createLabel(text: "coffee", size: 16, font: "Verdana", color: .white, in: blockView)
+        let label = createLabel(text: "coffee", size: 16, font: "Verdana", color: .black, in: blockView)
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: blockView.centerXAnchor),
             imageView.topAnchor.constraint(equalTo: blockView.topAnchor, constant: 20),
@@ -140,11 +141,11 @@ final class DetailViewController: UIViewController {
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            coffeeIcon.image = UIImage(named: "coffee")
+            coffeeIcon.image = .coffee
         case 1:
-            coffeeIcon.image = UIImage(named: "cop2")
+            coffeeIcon.image = .capuchino
         case 2:
-            coffeeIcon.image = UIImage(named: "cop3")
+            coffeeIcon.image = .latte
         default:
             break
         }

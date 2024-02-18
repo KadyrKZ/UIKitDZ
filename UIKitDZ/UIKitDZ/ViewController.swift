@@ -14,7 +14,7 @@ final class ViewController: UIViewController {
     private var isPasswordVisible = false
     /// Главное фото
     private lazy var headerIcon: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "Image"))
+        let imageView = UIImageView(image: .header)
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -38,7 +38,8 @@ final class ViewController: UIViewController {
         button.addTarget(self, action: #selector(textFieldDidChange), for: .touchUpInside)
         button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         loginView.addSubview(button)
-        button.backgroundColor = .systemGray
+        button.layer.cornerRadius = 12
+        button.backgroundColor = .buttonNonActive
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
         return button
@@ -46,7 +47,7 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        view.backgroundColor = .backgroundBroun
         loginView.frame = CGRect(x: 0, y: 230, width: Int(view.bounds.width), height: 582)
         loginView.backgroundColor = .white
         loginView.layer.cornerRadius = 20
@@ -132,9 +133,9 @@ final class ViewController: UIViewController {
     @objc func textFieldDidChange(_ textField: UITextField) {
         loginButton.isEnabled = checkFields()
         if loginButton.isEnabled {
-            loginButton.backgroundColor = .green
+            loginButton.backgroundColor = .buttonActive
         } else {
-            loginButton.backgroundColor = .systemGray
+            loginButton.backgroundColor = .buttonNonActive
         }
     }
 

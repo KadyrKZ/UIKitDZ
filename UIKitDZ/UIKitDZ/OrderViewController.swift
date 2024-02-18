@@ -7,7 +7,7 @@ import UIKit
 final class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .brown
+        view.backgroundColor = .white
         setupUI()
     }
 
@@ -20,37 +20,39 @@ final class OrderViewController: UIViewController {
             in: view
         )
 
-        let blockView = createBlockView(color: .systemGray, height: 165)
-        let addBlockView = createBlockView(color: .systemGray, height: 165)
+        let blockView = createBlockView(text: "Темная обжарка", color: .blockCoffee, height: 165)
+        let addBlockView = createBlockView(text: "Свѣтлая обжарка", color: .blockCoffee, height: 165)
 
         NSLayoutConstraint.activate([
             modLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             modLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             modLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+
             blockView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             blockView.topAnchor.constraint(equalTo: modLabel.bottomAnchor, constant: 20),
             blockView.trailingAnchor.constraint(equalTo: addBlockView.leadingAnchor, constant: -15),
+
             addBlockView.leadingAnchor.constraint(equalTo: blockView.trailingAnchor, constant: 15),
             addBlockView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             addBlockView.topAnchor.constraint(equalTo: modLabel.bottomAnchor, constant: 20),
         ])
     }
 
-    private func createBlockView(color: UIColor, height: CGFloat) -> UIView {
+    private func createBlockView(text: String, color: UIColor, height: CGFloat) -> UIView {
         let blockView = UIView()
         blockView.backgroundColor = color
-        blockView.layer.cornerRadius = 10
+        blockView.layer.cornerRadius = 12
         blockView.translatesAutoresizingMaskIntoConstraints = false
 
-        let imageView = createImageView(imageName: "coffee", in: blockView)
-        let label = createLabel(text: "coffee", size: 16, font: "Verdana", color: .white, in: blockView)
+        let imageView = createImageView(imageName: "umage", in: blockView)
+        let label = createLabel(text: text, size: 14, font: "Verdana", color: .black, in: blockView)
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: blockView.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: blockView.centerYAnchor),
+            imageView.topAnchor.constraint(equalTo: blockView.topAnchor, constant: 17),
             imageView.widthAnchor.constraint(equalToConstant: 100),
             imageView.heightAnchor.constraint(equalToConstant: 100),
 
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
             label.centerXAnchor.constraint(equalTo: blockView.centerXAnchor)
         ])
         view.addSubview(blockView)
