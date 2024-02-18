@@ -21,15 +21,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let profileNavigationController = UINavigationController(rootViewController: vc3)
 
-        vc1.tabBarItem = UITabBarItem(title: "", image: .catalog, tag: 0)
-        vc2.tabBarItem = UITabBarItem(title: "", image: .cart, tag: 1)
-        profileNavigationController.tabBarItem = UITabBarItem(title: "", image: .profile, tag: 2)
+        vc1.tabBarItem = UITabBarItem(title: "Каталог", image: .catalog, tag: 0)
+        vc1.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 2) // Уменьшаем размер изображения
+        vc1.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0) // Поднимаем текст
+
+        vc2.tabBarItem = UITabBarItem(title: "Корзина", image: .cart, tag: 1)
+        vc2.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 2)
+        vc2.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
+
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: .profile, tag: 2)
+        profileNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 4, left: 2, bottom: 4, right: 2)
+        profileNavigationController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
 
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [vc1, vc2, profileNavigationController]
         tabBarController.selectedViewController = vc1
 
         window.rootViewController = tabBarController
+        window.tintColor = .systemPink
         window.backgroundColor = .white
         window.makeKeyAndVisible()
 

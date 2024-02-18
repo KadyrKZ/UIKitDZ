@@ -5,12 +5,17 @@ import UIKit
 
 /// DetailViewController
 class DetailViewController: UIViewController {
-    var name = ""
-    var surName = ""
-    var number = ""
-    var email = ""
-    var bd = ""
-    var footSize = ""
+    private let maxNumerCount = 11
+    private let pattern = "[\\+\\s-\\(\\)]"
+    private let options: NSRegularExpression.Options = .caseInsensitive
+
+    private lazy var regex: NSRegularExpression = {
+        do {
+            return try NSRegularExpression(pattern: pattern, options: options)
+        } catch {
+            fatalError("Failed to create regular expression: \(error)")
+        }
+    }()
 
     // MARK: Visual Properties
 
@@ -30,6 +35,17 @@ class DetailViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .systemGray6
         textField.placeholder = "Размер ноги"
+        textField.font = .systemFont(ofSize: 14)
+        view.addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+
+    private lazy var numberField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.backgroundColor = .systemGray6
+        textField.placeholder = "Номер телефона"
         textField.font = .systemFont(ofSize: 14)
         view.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -62,9 +78,14 @@ class DetailViewController: UIViewController {
         let myDataLabel = makeLabel(text: "Мои данные")
         let nameField = makeTextfield(text: "Имя")
         let surnameField = makeTextfield(text: "Фамилия")
-        let numberField = makeTextfield(text: "Номер телефона")
         let emailField = makeTextfield(text: "Почта")
 
+        numberField.delegate = self
+        nameField.delegate = self
+        surnameField.delegate = self
+        emailField.delegate = self
+
+        numberField.keyboardType = .numberPad
         nameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         surnameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         numberField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -209,6 +230,45 @@ class DetailViewController: UIViewController {
     @objc func clickAdd() {
         print("будущем будет)")
     }
+
+    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
+        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2) else { return "+" }
+
+        let range = NSString(string: phoneNumber).range(of: phoneNumber)
+        var number = regex.stringByReplacingMatches(in: phoneNumber, options: [], range: range, withTemplate: "")
+
+        if number.count > maxNumerCount {
+            let maxIndex = number.index(number.startIndex, offsetBy: maxNumerCount)
+            number = String(number[number.startIndex ..< maxIndex])
+        }
+
+        if shouldRemoveLastDigit {
+            let maxIndex = number.index(number.startIndex, offsetBy: number.count - 1)
+            number = String(number[number.startIndex ..< maxIndex])
+        }
+
+        let maxIndex = number.index(number.startIndex, offsetBy: number.count)
+        let regRange = number.startIndex ..< maxIndex
+
+        if number.count < 7 {
+            let pattern = "(\\d)(\\d{3})(\\d+)"
+            number = number.replacingOccurrences(
+                of: pattern,
+                with: "$1 ($2) $3",
+                options: .regularExpression,
+                range: regRange
+            )
+        } else {
+            let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+            number = number.replacingOccurrences(
+                of: pattern,
+                with: "$1 ($2) $3-$4-$5",
+                options: .regularExpression,
+                range: regRange
+            )
+        }
+        return "+" + number
+    }
 }
 
 // MARK: Реализация протоколов пикера
@@ -256,5 +316,24 @@ extension DetailViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
     @objc private func cancelGenderSelection() {
         view.endEditing(true) // Закрываем пикер
+    }
+}
+
+extension DetailViewController: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        if textField == numberField {
+            let fullString = (textField.text ?? "") + string
+            textField.text = format(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+            return false
+        }
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

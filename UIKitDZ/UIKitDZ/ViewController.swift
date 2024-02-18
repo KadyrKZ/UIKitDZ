@@ -115,6 +115,10 @@ class ViewController: UIViewController {
         let imageView = UIImageView(image: UIImage(named: image))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOpacity = 0.5
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        imageView.layer.shadowRadius = 4
         return imageView
     }
 
