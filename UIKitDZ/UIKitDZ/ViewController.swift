@@ -3,14 +3,16 @@
 
 import UIKit
 
-/// ViewController
+/// ViewController - контроллер для логина
 
 final class ViewController: UIViewController {
-    var loginView = UIView()
-    var loginField = UITextField()
-    var passField = UITextField()
-    var isPasswordVisible = false
-
+    /// Приватные экземпляры для полей
+    private let loginView = UIView()
+    private var loginField = UITextField()
+    private var passField = UITextField()
+    // Переменный для управление видимости пароля
+    private var isPasswordVisible = false
+    /// Главное фото
     private lazy var headerIcon: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "Image"))
         view.addSubview(imageView)
@@ -18,6 +20,7 @@ final class ViewController: UIViewController {
         return imageView
     }()
 
+    /// Кнопка для управление видимости пароля
     private lazy var eyeIcon: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
@@ -28,6 +31,7 @@ final class ViewController: UIViewController {
         return button
     }()
 
+    /// Кнопка логина для перехода на следущий экран
     private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Войти", for: .normal)
@@ -51,13 +55,16 @@ final class ViewController: UIViewController {
         setupUI()
     }
 
-    func setupUI() {
+    private func setupUI() {
         let signUpLabel = createLabel(text: "Авторизация", size: 26)
         let loginLabel = createLabel(text: "Логин", size: 16)
         let passLabel = createLabel(text: "Пароль", size: 16)
         loginField = createTextField(text: "Введи почту")
         passField = createTextField(text: "Введи пароль")
         passField.isSecureTextEntry = true
+
+        loginField.delegate = self
+        passField.delegate = self
 
         NSLayoutConstraint.activate([
             headerIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
@@ -81,7 +88,7 @@ final class ViewController: UIViewController {
         passField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
 
-    func createLabel(text: String, size: CGFloat) -> UILabel {
+    private func createLabel(text: String, size: CGFloat) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = UIFont(name: "Verdana-Bold", size: size)
@@ -94,7 +101,7 @@ final class ViewController: UIViewController {
         return label
     }
 
-    func createTextField(text: String) -> UITextField {
+    private func createTextField(text: String) -> UITextField {
         let textField = UITextField()
         textField.placeholder = text
         textField.font = UIFont(name: "Verdana", size: 16)
@@ -108,18 +115,18 @@ final class ViewController: UIViewController {
         return textField
     }
 
+    private func checkFields() -> Bool {
+        guard let loginText = loginField.text, let passText = passField.text else {
+            return false
+        }
+        return !loginText.isEmpty && !passText.isEmpty
+    }
+
     @objc func clickEyeButton() {
         isPasswordVisible.toggle()
         let imageName = isPasswordVisible ? "eye" : "eye.slash"
         eyeIcon.setImage(UIImage(systemName: imageName), for: .normal)
         passField.isSecureTextEntry = !isPasswordVisible
-    }
-
-    func checkFields() -> Bool {
-        guard let loginText = loginField.text, let passText = passField.text else {
-            return false
-        }
-        return !loginText.isEmpty && !passText.isEmpty
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -133,6 +140,13 @@ final class ViewController: UIViewController {
 
     @objc func loginButtonTapped() {
         let vc = MainViewController()
-        present(vc, animated: true, completion: nil)
+        present(vc, animated: true)
+        vc.presentingNavController = navigationController
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

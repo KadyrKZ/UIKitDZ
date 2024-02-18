@@ -4,14 +4,14 @@
 import UIKit
 
 /// AddBlockViewController
-class AddBlockViewController: UIViewController {
+final class AddBlockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
     }
 
-    func setupUI() {
+    private func setupUI() {
         let modLabel = createLabel(
             text: "Выберите дополнительные\nингредіенты",
             size: 18,
@@ -65,7 +65,7 @@ class AddBlockViewController: UIViewController {
         ])
     }
 
-    func createLabel(text: String, size: CGFloat, font: String, in view: UIView) -> UILabel {
+    private func createLabel(text: String, size: CGFloat, font: String, in view: UIView) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = UIFont(name: font, size: size)
@@ -76,7 +76,7 @@ class AddBlockViewController: UIViewController {
         return label
     }
 
-    func createSwitch(in view: UIView) -> UISwitch {
+    private func createSwitch(in view: UIView) -> UISwitch {
         let switchControl = UISwitch()
         view.addSubview(switchControl)
         switchControl.translatesAutoresizingMaskIntoConstraints = false

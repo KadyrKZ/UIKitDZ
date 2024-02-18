@@ -4,11 +4,12 @@
 import UIKit
 
 /// MainViewController
-class MainViewController: UIViewController {
-    var loginView = UIView()
-    var loginField = UITextField()
-    var passField = UITextField()
-    var isPasswordVisible = false
+final class MainViewController: UIViewController {
+    private let loginView = UIView()
+    private let loginField = UITextField()
+    private let passField = UITextField()
+    private var isPasswordVisible = false
+    var presentingNavController: UINavigationController!
 
     private lazy var headerIcon: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "Image"))
@@ -37,7 +38,7 @@ class MainViewController: UIViewController {
         setupUI()
     }
 
-    func setupUI() {
+    private func setupUI() {
         createView()
         let adressView = createBlockView(color: .systemBlue, height: 70)
         let pizogView = createBlockView(color: .systemBrown, height: 80)
@@ -97,14 +98,14 @@ class MainViewController: UIViewController {
         ])
     }
 
-    func createView() {
+    private func createView() {
         loginView.frame = CGRect(x: 0, y: 230, width: Int(view.bounds.width), height: 580)
         loginView.backgroundColor = .white
         loginView.layer.cornerRadius = 20
         view.addSubview(loginView)
     }
 
-    func createBlockView(color: UIColor, height: CGFloat) -> UIView {
+    private func createBlockView(color: UIColor, height: CGFloat) -> UIView {
         let blockView = UIView()
         blockView.backgroundColor = color
         blockView.layer.cornerRadius = 15
@@ -118,7 +119,7 @@ class MainViewController: UIViewController {
         return blockView
     }
 
-    func createLabel(text: String, size: CGFloat, font: String, in view: UIView) -> UILabel {
+    private func createLabel(text: String, size: CGFloat, font: String, in view: UIView) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = UIFont(name: font, size: size)
@@ -129,7 +130,7 @@ class MainViewController: UIViewController {
         return label
     }
 
-    func createImageView(imageName: String, in view: UIView) -> UIImageView {
+    private func createImageView(imageName: String, in view: UIView) -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: imageName))
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -138,7 +139,7 @@ class MainViewController: UIViewController {
 
     @objc func handleCoffeeViewTap() {
         let vc = DetailViewController()
-
-        navigationController?.pushViewController(vc, animated: true)
+        presentingNavController?.pushViewController(vc, animated: true)
+        dismiss(animated: false)
     }
 }

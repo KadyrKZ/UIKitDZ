@@ -4,7 +4,7 @@
 import UIKit
 
 /// DetailViewController
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     var loginView = UIView()
 
     private lazy var coffeeIcon: UIImageView = {
@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
         setupUI()
     }
 
-    func setupUI() {
+    private func setupUI() {
         createView()
         let segmentedControl = UISegmentedControl(items: ["Американо", "Капучино", "Латте"])
         segmentedControl.selectedSegmentIndex = 0
@@ -86,14 +86,14 @@ class DetailViewController: UIViewController {
         ])
     }
 
-    func createView() {
+    private func createView() {
         loginView.frame = CGRect(x: 0, y: 0, width: Int(view.bounds.width), height: 350)
         loginView.backgroundColor = .white
         loginView.layer.cornerRadius = 20
         view.addSubview(loginView)
     }
 
-    func createBlockView(color: UIColor, height: CGFloat) -> UIView {
+    private func createBlockView(color: UIColor, height: CGFloat) -> UIView {
         let blockView = UIView()
         blockView.backgroundColor = color
         blockView.layer.cornerRadius = 10
@@ -119,7 +119,7 @@ class DetailViewController: UIViewController {
         return blockView
     }
 
-    func createLabel(text: String, size: CGFloat, font: String, color: UIColor, in view: UIView) -> UILabel {
+    private func createLabel(text: String, size: CGFloat, font: String, color: UIColor, in view: UIView) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = UIFont(name: font, size: size)
@@ -130,7 +130,7 @@ class DetailViewController: UIViewController {
         return label
     }
 
-    func createImageView(imageName: String, in view: UIView) -> UIImageView {
+    private func createImageView(imageName: String, in view: UIView) -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: imageName))
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false

@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         // Создайте экземпляр MainViewController
-        let mainViewController = MainViewController()
+        let mainViewController = ViewController()
         let navigationController = UINavigationController(rootViewController: mainViewController)
 
         window?.rootViewController = navigationController

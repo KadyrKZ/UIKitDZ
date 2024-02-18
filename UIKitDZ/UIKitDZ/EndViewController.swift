@@ -4,7 +4,7 @@
 import UIKit
 
 /// EndViewController
-class EndViewController: UIViewController {
+final class EndViewController: UIViewController {
     private lazy var endButton: UIButton = {
         let button = UIButton()
         button.setTitle("Хорошо", for: .normal)
@@ -22,7 +22,7 @@ class EndViewController: UIViewController {
         setupUI()
     }
 
-    func setupUI() {
+    private func setupUI() {
         let image = createImageView(imageName: "end", in: view)
         let modLabel = createLabel(text: "спасибо\nза заказъ ", size: 30, font: "Verdana-Bold", color: .black, in: view)
 
@@ -59,7 +59,7 @@ class EndViewController: UIViewController {
         ])
     }
 
-    func createLabel(text: String, size: CGFloat, font: String, color: UIColor, in view: UIView) -> UILabel {
+    private func createLabel(text: String, size: CGFloat, font: String, color: UIColor, in view: UIView) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = UIFont(name: font, size: size)
@@ -73,7 +73,7 @@ class EndViewController: UIViewController {
         return label
     }
 
-    func createImageView(imageName: String, in view: UIView) -> UIImageView {
+    private func createImageView(imageName: String, in view: UIView) -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: imageName))
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false

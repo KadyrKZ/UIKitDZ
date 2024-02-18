@@ -4,14 +4,14 @@
 import UIKit
 
 /// OrderViewController
-class OrderViewController: UIViewController {
+final class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
         setupUI()
     }
 
-    func setupUI() {
+    private func setupUI() {
         let modLabel = createLabel(
             text: "Уточните обжарку зеренъ",
             size: 18,
@@ -36,7 +36,7 @@ class OrderViewController: UIViewController {
         ])
     }
 
-    func createBlockView(color: UIColor, height: CGFloat) -> UIView {
+    private func createBlockView(color: UIColor, height: CGFloat) -> UIView {
         let blockView = UIView()
         blockView.backgroundColor = color
         blockView.layer.cornerRadius = 10
@@ -62,7 +62,7 @@ class OrderViewController: UIViewController {
         return blockView
     }
 
-    func createLabel(text: String, size: CGFloat, font: String, color: UIColor, in view: UIView) -> UILabel {
+    private func createLabel(text: String, size: CGFloat, font: String, color: UIColor, in view: UIView) -> UILabel {
         let label = UILabel()
         label.text = text
         label.font = UIFont(name: font, size: size)
@@ -73,7 +73,7 @@ class OrderViewController: UIViewController {
         return label
     }
 
-    func createImageView(imageName: String, in view: UIView) -> UIImageView {
+    private func createImageView(imageName: String, in view: UIView) -> UIImageView {
         let imageView = UIImageView(image: UIImage(named: imageName))
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
