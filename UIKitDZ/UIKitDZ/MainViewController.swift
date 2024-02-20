@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// MainViewController - 
+/// MainViewController - основной контроллер для приветствие
 final class MainViewController: UIViewController {
     /// Приватные экземпляры для полей
     private let loginView = UIView()
