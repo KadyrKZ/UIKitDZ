@@ -27,11 +27,11 @@ struct Source {
     }
 
     // Все рекоммендационные посты
-    let recommend: [Recommend] = [
-        Recommend(name: "сrimea_082", photo: "recommendImage"),
-        Recommend(name: "сrimea_082", photo: "recommendImage"),
-        Recommend(name: "сrimea_082", photo: "recommendImage"),
-        Recommend(name: "сrimea_082", photo: "recommendImage"),
+    let recommendation: [Recommendation] = [
+        Recommendation(name: "сrimea_082", photo: "recommendationImage"),
+        Recommendation(name: "сrimea_082", photo: "recommendationImage"),
+        Recommendation(name: "сrimea_082", photo: "recommendationImage"),
+        Recommendation(name: "сrimea_082", photo: "recommendationImage"),
     ]
     /// Все остальные посты
     let otherPosts: [Other] = [
@@ -48,51 +48,51 @@ struct Source {
         [
             .init(
                 name: "Anna",
-                image: UIImage(named: "lavanda123"),
+                image: "lavanda123",
                 description: Description.description,
                 timeNotified: .today,
-                picture: UIImage(named: "picture"), isFollowing: false
+                picture: "picture", isFollowing: false
             ),
             .init(
                 name: "Arina",
-                image: UIImage(named: "lavanda123"),
+                image: "lavanda123",
                 description: Description.description,
                 timeNotified: .today,
-                picture: UIImage(named: "picture"), isFollowing: false
+                picture: "picture", isFollowing: false
             ),
             .init(
                 name: "Selena",
-                image: UIImage(named: "lavanda123"),
+                image: "lavanda123",
                 description: Description.description,
                 timeNotified: .today,
-                picture: UIImage(named: "picture"), isFollowing: false
+                picture: "picture", isFollowing: false
             ),
             .init(
                 name: "Selena",
-                image: UIImage(named: "lavanda123"),
+                image: "lavanda123",
                 description: Description.description,
                 timeNotified: .today,
-                picture: nil, isFollowing: false
+                picture: "", isFollowing: false
             ),
             .init(
                 name: "Kadyr",
-                image: UIImage(named: "lavanda123"),
+                image: "lavanda123",
                 description: Description.description2,
                 timeNotified: .thisWeek,
-                picture: nil, isFollowing: true
+                picture: "", isFollowing: true
             ), .init(
                 name: "Murka",
-                image: UIImage(named: "lavanda123"),
+                image: "lavanda123",
                 description: Description.description,
                 timeNotified: .thisWeek,
-                picture: nil, isFollowing: true
+                picture: "", isFollowing: true
             ),
             .init(
                 name: "Lara",
-                image: UIImage(named: "lavanda123"),
+                image: "lavanda123",
                 description: Description.description,
                 timeNotified: .thisWeek,
-                picture: UIImage(named: "picture"), isFollowing: false
+                picture: "picture", isFollowing: false
             ),
         ]
     }
@@ -102,47 +102,4 @@ struct Source {
         let thisWeek = makeContacts().filter { $0.timeNotified == .thisWeek }
         return [today, thisWeek]
     }
-}
-
-/// Структура для сторисов
-struct Story {
-    let name: String
-    let photo: String
-    let viewed: Bool
-}
-
-//  Структура для рекоммендации
-struct Recommend {
-    let name: String
-    let photo: String
-}
-
-/// Структура для остальных постов
-struct Other {
-    let name: String
-    let photo: String
-    let friendPhoto: String
-    let myPhoto: String
-}
-
-/// Структура уведомлении
-struct Notification {
-    let name: String
-    let image: UIImage?
-    let description: String
-    let timeNotified: TimeNotified
-    let picture: UIImage?
-    let isFollowing: Bool
-}
-
-/// Время для уведомлении
-enum TimeNotified {
-    case today
-    case thisWeek
-}
-
-/// Описание для уведомлении
-struct Description {
-    static let description = "приятная девушка"
-    static let description2 = "приятный человек"
 }

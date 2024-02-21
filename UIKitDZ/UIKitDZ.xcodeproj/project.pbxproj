@@ -11,7 +11,7 @@
 		C9E0B11D2B851400001F9EE2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B11C2B851400001F9EE2 /* Source.swift */; };
 		C9E0B11F2B851FBA001F9EE2 /* StoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B11E2B851FBA001F9EE2 /* StoryViewCell.swift */; };
 		C9E0B1212B852BCF001F9EE2 /* FirstViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B1202B852BCF001F9EE2 /* FirstViewCell.swift */; };
-		C9E0B1232B852BDE001F9EE2 /* RecomendViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B1222B852BDE001F9EE2 /* RecomendViewCell.swift */; };
+		C9E0B1232B852BDE001F9EE2 /* RecomendationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B1222B852BDE001F9EE2 /* RecomendationViewCell.swift */; };
 		C9E0B1262B852C08001F9EE2 /* OtherViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B1252B852C08001F9EE2 /* OtherViewCell.swift */; };
 		C9E0B12A2B854558001F9EE2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B1292B854558001F9EE2 /* NotificationViewController.swift */; };
 		C9E0B12C2B854722001F9EE2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B12B2B854722001F9EE2 /* ProfileViewController.swift */; };
@@ -34,7 +34,7 @@
 		C9E0B11C2B851400001F9EE2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		C9E0B11E2B851FBA001F9EE2 /* StoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewCell.swift; sourceTree = "<group>"; };
 		C9E0B1202B852BCF001F9EE2 /* FirstViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewCell.swift; sourceTree = "<group>"; };
-		C9E0B1222B852BDE001F9EE2 /* RecomendViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendViewCell.swift; sourceTree = "<group>"; };
+		C9E0B1222B852BDE001F9EE2 /* RecomendationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendationViewCell.swift; sourceTree = "<group>"; };
 		C9E0B1252B852C08001F9EE2 /* OtherViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewCell.swift; sourceTree = "<group>"; };
 		C9E0B1292B854558001F9EE2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		C9E0B12B2B854722001F9EE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		C9E0B1242B852BE9001F9EE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C9E0B1222B852BDE001F9EE2 /* RecomendViewCell.swift */,
+				C9E0B1222B852BDE001F9EE2 /* RecomendationViewCell.swift */,
 				C9E0B11E2B851FBA001F9EE2 /* StoryViewCell.swift */,
 				C9E0B1252B852C08001F9EE2 /* OtherViewCell.swift */,
 				C9E0B1202B852BCF001F9EE2 /* FirstViewCell.swift */,
@@ -263,7 +263,7 @@
 				C9E0B1322B865623001F9EE2 /* Story.swift in Sources */,
 				C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */,
 				C9E0B1302B863EF4001F9EE2 /* TabBarController.swift in Sources */,
-				C9E0B1232B852BDE001F9EE2 /* RecomendViewCell.swift in Sources */,
+				C9E0B1232B852BDE001F9EE2 /* RecomendationViewCell.swift in Sources */,
 				C9E0B1342B865663001F9EE2 /* Recommendation.swift in Sources */,
 				C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */,
 			);

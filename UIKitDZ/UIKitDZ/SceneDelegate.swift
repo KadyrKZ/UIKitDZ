@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// tabBarController
+/// Окно приложение
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 

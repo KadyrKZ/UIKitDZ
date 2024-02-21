@@ -10,7 +10,7 @@ final class NotificationViewController: UIViewController {
     let tableView: UITableView = .init()
 
     var contacts = Source.makeContactsWithGroup()
-
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

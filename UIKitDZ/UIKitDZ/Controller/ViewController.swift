@@ -9,7 +9,7 @@ final class ViewController: UIViewController {
 
     // MARK: Массив для типов постов
 
-    private let postTypes: [PostTypes] = [.stories, .firstPost, .recommendPost, .otherPosts]
+    private let postTypes: [PostTypes] = [.stories, .firstPost, .recommendationPost, .otherPosts]
 
     // MARK: Контроллер реализован в TableView
 
@@ -19,6 +19,8 @@ final class ViewController: UIViewController {
 
     private let source = Source()
 
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -37,7 +39,7 @@ final class ViewController: UIViewController {
     private func configuraTableView() {
         // Регистрирую все ячейки
         tableView.register(StoryViewCell.self, forCellReuseIdentifier: "StoryViewCell")
-        tableView.register(RecomendViewCell.self, forCellReuseIdentifier: "RecomendViewCell")
+        tableView.register(RecomendationViewCell.self, forCellReuseIdentifier: "RecomendationViewCell")
         tableView.register(OtherViewCell.self, forCellReuseIdentifier: "OtherViewCell")
         tableView.register(FirstViewCell.self, forCellReuseIdentifier: "FirstViewCell")
         // Подключаю делегат и датасорс для работы с таблицой
@@ -91,7 +93,7 @@ extension ViewController {
     enum PostTypes {
         case stories
         case firstPost
-        case recommendPost
+        case recommendationPost
         case otherPosts
     }
 }
@@ -105,7 +107,7 @@ extension ViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch postTypes[section] {
-        case .stories, .firstPost, .recommendPost:
+        case .stories, .firstPost, .recommendationPost:
             return 1
         case .otherPosts:
             return source.posts.count
@@ -132,13 +134,13 @@ extension ViewController: UITableViewDataSource {
             let post = source.firstPost
             cell.setupCell(post: post)
             return cell
-        case .recommendPost:
+        case .recommendationPost:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: "RecomendViewCell",
+                withIdentifier: "RecomendationViewCell",
                 for: indexPath
-            ) as? RecomendViewCell
+            ) as? RecomendationViewCell
             else { return UITableViewCell() }
-            let post = source.recommend
+            let post = source.recommendation
             cell.setupCell(posts: post)
             return cell
         case .otherPosts:

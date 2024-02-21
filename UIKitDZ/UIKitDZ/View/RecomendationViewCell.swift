@@ -1,10 +1,10 @@
-// RecomendViewCell.swift
+// RecomendationViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-/// RecomendViewCell
-final class RecomendViewCell: UITableViewCell {
+/// RecomendationViewCell ячейка с рекоммендациями
+final class RecomendationViewCell: UITableViewCell {
     // MARK: Private Property
 
     private let scrollView = UIScrollView()
@@ -22,7 +22,7 @@ final class RecomendViewCell: UITableViewCell {
     // MARK: Установка ячейки
 
     func setupCell(posts: [Recommendation]) {
-        scrollView.backgroundColor = .recommend
+        scrollView.backgroundColor = .recommendation
         scrollView.addSubview(stackView)
         contentView.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
