@@ -39,6 +39,18 @@ class NotificationViewCell: UITableViewCell {
         return button
     }()
 
+    let unsubscribeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Отписаться", for: .normal)
+        button.setTitleColor(.systemGray3, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 10)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 8
+        button.layer.borderWidth = 1
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -55,12 +67,12 @@ class NotificationViewCell: UITableViewCell {
             contentView.addSubview(item)
         }
         NSLayoutConstraint.activate([
-            avatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            avatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             avatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             avatar.heightAnchor.constraint(equalToConstant: 40),
             avatar.widthAnchor.constraint(equalToConstant: 40),
 
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             nameLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 8),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
@@ -68,7 +80,7 @@ class NotificationViewCell: UITableViewCell {
             descriptionLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 8),
             descriptionLabel.trailingAnchor.constraint(equalTo: picture.leadingAnchor, constant: -24),
 
-            picture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            picture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             picture.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             picture.heightAnchor.constraint(equalToConstant: 40),
             picture.widthAnchor.constraint(equalToConstant: 40),
@@ -93,6 +105,14 @@ class NotificationViewCell: UITableViewCell {
                 followButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
                 followButton.heightAnchor.constraint(equalToConstant: 30),
                 followButton.widthAnchor.constraint(equalToConstant: 140),
+            ])
+        } else if !contact.isFollowing, contact.picture == nil {
+            contentView.addSubview(unsubscribeButton)
+            NSLayoutConstraint.activate([
+                unsubscribeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+                unsubscribeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+                unsubscribeButton.heightAnchor.constraint(equalToConstant: 30),
+                unsubscribeButton.widthAnchor.constraint(equalToConstant: 140),
             ])
         } else {
             followButton.removeFromSuperview()

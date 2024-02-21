@@ -9,20 +9,16 @@ struct Source {
     // Все посты
     let posts = ["firstPost", "secondPost", "thirdPost", "forthPost"]
     let story: [Story] = [
-        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
         Story(name: "lavanda123", photo: "lavanda123", viewed: true),
-        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
         Story(name: "lavanda123", photo: "lavanda123", viewed: true),
-        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
-        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
-        Story(name: "lavanda123", photo: "lavanda123", viewed: true),
-        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
         Story(name: "lavanda123", photo: "lavanda123", viewed: true),
         Story(name: "lavanda123", photo: "lavanda123", viewed: false),
         Story(name: "lavanda123", photo: "lavanda123", viewed: false),
-        Story(name: "lavanda123", photo: "lavanda123", viewed: true),
         Story(name: "lavanda123", photo: "lavanda123", viewed: false),
-        Story(name: "lavanda123", photo: "lavanda123", viewed: true),
+        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
+        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
+        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
+        Story(name: "lavanda123", photo: "lavanda123", viewed: false),
         Story(name: "lavanda123", photo: "lavanda123", viewed: false)
     ]
 
@@ -69,6 +65,13 @@ struct Source {
                 description: Description.description,
                 timeNotified: .today,
                 picture: UIImage(named: "picture"), isFollowing: false
+            ),
+            .init(
+                name: "Selena",
+                image: UIImage(named: "lavanda123"),
+                description: Description.description,
+                timeNotified: .today,
+                picture: nil, isFollowing: false
             ),
             .init(
                 name: "Kadyr",

@@ -29,6 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         viewController2.tabBarItem.image = .notification
         viewController3.tabBarItem.image = .profile
 
+        viewController1.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 2)
+        viewController2.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 2)
+        viewController3.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 2)
+
         let navController1 = UINavigationController(rootViewController: viewController1)
         let navController2 = UINavigationController(rootViewController: viewController2)
         let navController3 = UINavigationController(rootViewController: viewController3)
@@ -36,6 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.setViewControllers([navController1, navController2, navController3], animated: false)
 
         window?.rootViewController = tabBarController
+        window?.tintColor = .black
         window?.makeKeyAndVisible()
     }
 }
