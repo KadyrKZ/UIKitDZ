@@ -3,12 +3,14 @@
 
 import UIKit
 
-/// FirstViewCell
-class FirstViewCell: UITableViewCell {
+/// FirstViewCell - первый пост
+final class FirstViewCell: UITableViewCell {
     // MARK: Private Proporties
 
     private let scrollView = UIScrollView()
     private var postImages: [String] = []
+
+    // MARK: Пейжконтроллер если несколько фото в посте
 
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
@@ -18,11 +20,15 @@ class FirstViewCell: UITableViewCell {
         return pageControl
     }()
 
+    // MARK: Стеквью ячейки добавляется в стек
+
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.alignment = .center
         return stackView
     }()
+
+    // MARK: Установка ячейки
 
     func setupCell(post: Other) {
         scrollView.addSubview(stackView)
@@ -53,6 +59,8 @@ class FirstViewCell: UITableViewCell {
 
         renderUI(post: post)
     }
+
+    // MARK: Обрабатываем визуал
 
     private func renderUI(post: Other) {
         let view = UIView()
@@ -116,6 +124,8 @@ class FirstViewCell: UITableViewCell {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let moreOptionsButton = makeButton(imageName: "optionImage", in: view)
+
+        // MARK: Якоря
 
         NSLayoutConstraint.activate([
             view.heightAnchor.constraint(equalToConstant: 411),
@@ -181,6 +191,8 @@ class FirstViewCell: UITableViewCell {
         ])
     }
 
+    // MARK: Для создание фото
+
     private func makeImage(imageName: String, in view: UIView) -> UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: imageName)
@@ -188,6 +200,8 @@ class FirstViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }
+
+    // MARK: Для создание кнопки
 
     private func makeButton(imageName: String, in view: UIView) -> UIButton {
         let button = UIButton()

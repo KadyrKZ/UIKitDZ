@@ -3,14 +3,20 @@
 
 import UIKit
 
-/// OtherViewCell
-class OtherViewCell: UITableViewCell {
-    let scrollView = UIScrollView()
+/// OtherViewCell - все остальные ячейки
+final class OtherViewCell: UITableViewCell {
+    // MARK: Private Property
+
+    private let scrollView = UIScrollView()
+
+    // MARK: Стек для ячеек
 
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         return stackView
     }()
+
+    // MARK: Установка ячейки
 
     func setupCell(post: [Other]) {
         scrollView.addSubview(stackView)
@@ -36,6 +42,8 @@ class OtherViewCell: UITableViewCell {
 
         renderUI(posts: post)
     }
+
+    // MARK: Оброботка визуала
 
     private func renderUI(posts: [Other]) {
         for post in posts {
@@ -98,6 +106,8 @@ class OtherViewCell: UITableViewCell {
             timeLabel.translatesAutoresizingMaskIntoConstraints = false
 
             let moreOptionsButton = makeButton(imageName: "optionImage", in: view)
+
+            // MARK: Якоря
 
             NSLayoutConstraint.activate([
                 view.heightAnchor.constraint(equalToConstant: 411),
@@ -171,6 +181,8 @@ class OtherViewCell: UITableViewCell {
             ])
         }
 
+        // MARK: Для создание фото
+
         func makeImage(imageName: String, in view: UIView) -> UIImageView {
             let imageView = UIImageView()
             imageView.image = UIImage(named: imageName)
@@ -178,6 +190,8 @@ class OtherViewCell: UITableViewCell {
             imageView.translatesAutoresizingMaskIntoConstraints = false
             return imageView
         }
+
+        // MARK: Для создание кнопки
 
         func makeButton(imageName: String, in view: UIView) -> UIButton {
             let button = UIButton()

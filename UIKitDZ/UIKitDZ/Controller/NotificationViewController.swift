@@ -3,18 +3,32 @@
 
 import UIKit
 
-/// NotificationViewController
-class NotificationViewController: UIViewController {
-    var contacts = Source.makeContactsWithGroup()
+/// NotificationViewController - страница уведомлении
+final class NotificationViewController: UIViewController {
+    // MARK: Реализация тейблвью
 
     let tableView: UITableView = .init()
 
+    var contacts = Source.makeContactsWithGroup()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // MARK: Настройка фона
+
         view.backgroundColor = .white
+        navigationItem.title = "Уведомления"
         navigationController?.navigationBar.prefersLargeTitles = true
+        if let font = UIFont(name: "Verdana-Bold", size: 24) {
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: font]
+        }
+        /// еще один вариант let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size:
+        /// 17)!]
+        /// UINavigationBar.appearance().titleTextAttributes = attributes
 
         setupTableView()
+
+        // MARK: Регистрируем ячейки
 
         tableView.register(NotificationViewCell.self, forCellReuseIdentifier: "NotificationViewCell")
         tableView.dataSource = self
@@ -25,6 +39,8 @@ class NotificationViewController: UIViewController {
     }
 }
 
+// MARK: Делагаты таблицы
+
 extension NotificationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
@@ -34,6 +50,8 @@ extension NotificationViewController: UITableViewDelegate {
         UITableView.automaticDimension
     }
 }
+
+// MARK: Датасоурс таблицы
 
 extension NotificationViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,6 +96,8 @@ extension NotificationViewController: UITableViewDataSource {
         }
     }
 }
+
+// MARK: Установка таблицы в контроллер
 
 extension NotificationViewController {
     func setupTableView() {

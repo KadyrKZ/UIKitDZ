@@ -26,13 +26,14 @@ struct Source {
         posts[index]
     }
 
+    // Все рекоммендационные посты
     let recommend: [Recommend] = [
         Recommend(name: "сrimea_082", photo: "recommendImage"),
         Recommend(name: "сrimea_082", photo: "recommendImage"),
         Recommend(name: "сrimea_082", photo: "recommendImage"),
         Recommend(name: "сrimea_082", photo: "recommendImage"),
     ]
-
+    /// Все остальные посты
     let otherPosts: [Other] = [
         Other(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto"),
         Other(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto"),
@@ -40,7 +41,7 @@ struct Source {
         Other(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto"),
         Other(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto"),
     ]
-
+    /// первый пост
     let firstPost: Other = .init(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto")
 
     static func makeContacts() -> [Notification] {
@@ -103,20 +104,20 @@ struct Source {
     }
 }
 
-/// Story
+/// Структура для сторисов
 struct Story {
     let name: String
     let photo: String
     let viewed: Bool
 }
 
-// Recommend
+//  Структура для рекоммендации
 struct Recommend {
     let name: String
     let photo: String
 }
 
-/// Other
+/// Структура для остальных постов
 struct Other {
     let name: String
     let photo: String
@@ -124,7 +125,7 @@ struct Other {
     let myPhoto: String
 }
 
-/// Story
+/// Структура уведомлении
 struct Notification {
     let name: String
     let image: UIImage?
@@ -134,13 +135,13 @@ struct Notification {
     let isFollowing: Bool
 }
 
-/// Story
+/// Время для уведомлении
 enum TimeNotified {
     case today
     case thisWeek
 }
 
-/// Story
+/// Описание для уведомлении
 struct Description {
     static let description = "приятная девушка"
     static let description2 = "приятный человек"

@@ -4,8 +4,12 @@
 import UIKit
 
 /// RecomendViewCell
-class RecomendViewCell: UITableViewCell {
-    let scrollView = UIScrollView()
+final class RecomendViewCell: UITableViewCell {
+    // MARK: Private Property
+
+    private let scrollView = UIScrollView()
+
+    // MARK: Стеквью для истории
 
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -14,6 +18,8 @@ class RecomendViewCell: UITableViewCell {
         stackView.alignment = .center
         return stackView
     }()
+
+    // MARK: Установка ячейки
 
     func setupCell(posts: [Recommend]) {
         scrollView.backgroundColor = .recommend
@@ -39,6 +45,8 @@ class RecomendViewCell: UITableViewCell {
 
         renderUI(posts: posts)
     }
+
+    // MARK: Оброботка визуала
 
     private func renderUI(posts: [Recommend]) {
         for post in posts {
@@ -83,6 +91,8 @@ class RecomendViewCell: UITableViewCell {
             topRightLabel.font = .boldSystemFont(ofSize: 10)
             contentView.addSubview(topRightLabel)
             topRightLabel.translatesAutoresizingMaskIntoConstraints = false
+
+            // MARK: Якоря
 
             NSLayoutConstraint.activate([
                 view.heightAnchor.constraint(equalToConstant: 200),

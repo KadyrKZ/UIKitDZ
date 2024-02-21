@@ -7,34 +7,47 @@ import UIKit
 final class ViewController: UIViewController {
     // MARK: Private Properties
 
+    // MARK: Массив для типов постов
+
     private let postTypes: [PostTypes] = [.stories, .firstPost, .recommendPost, .otherPosts]
 
+    // MARK: Контроллер реализован в TableView
+
     private let tableView = UITableView()
+
+    // MARK: для работы с моделем делаю экземпляр
 
     private let source = Source()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
         setupUI()
     }
+
+    // MARK: Функция для визуала
 
     private func setupUI() {
         createHeaderButton()
         configuraTableView()
     }
 
+    // MARK: Функция для конфигурации таблицу
+
     private func configuraTableView() {
+        // Регистрирую все ячейки
         tableView.register(StoryViewCell.self, forCellReuseIdentifier: "StoryViewCell")
         tableView.register(RecomendViewCell.self, forCellReuseIdentifier: "RecomendViewCell")
         tableView.register(OtherViewCell.self, forCellReuseIdentifier: "OtherViewCell")
         tableView.register(FirstViewCell.self, forCellReuseIdentifier: "FirstViewCell")
-
+        // Подключаю делегат и датасорс для работы с таблицой
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        // MARK: Констрейнты для полного покрытие экрана тейблвью
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -43,6 +56,8 @@ final class ViewController: UIViewController {
 
         ])
     }
+
+    // MARK: Функция для создание хедера
 
     fileprivate func createHeaderButton() {
         /// Логотип приложения с кастомным шрифтом
@@ -69,6 +84,8 @@ final class ViewController: UIViewController {
     }
 }
 
+// MARK: Расширение ViewController
+
 extension ViewController {
     /// Типы постов
     enum PostTypes {
@@ -78,6 +95,8 @@ extension ViewController {
         case otherPosts
     }
 }
+
+// MARK: Расширение для реализации UITableViewDataSource
 
 extension ViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

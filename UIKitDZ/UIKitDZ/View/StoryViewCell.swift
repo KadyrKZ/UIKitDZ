@@ -4,8 +4,10 @@
 import UIKit
 
 /// StoryViewCell
-class StoryViewCell: UITableViewCell {
-    let scrollView = UIScrollView()
+final class StoryViewCell: UITableViewCell {
+    // MARK: Private Property
+
+    private let scrollView = UIScrollView()
 
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -15,6 +17,8 @@ class StoryViewCell: UITableViewCell {
 
         return stackView
     }()
+
+    // MARK: Установка ячейки
 
     func setupCell(posts: [Story]) {
         scrollView.addSubview(stackView)
@@ -39,6 +43,8 @@ class StoryViewCell: UITableViewCell {
 
         renderUI(posts: posts)
     }
+
+    // MARK: Оброботка визуала
 
     private func renderUI(posts: [Story]) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
@@ -95,6 +101,9 @@ class StoryViewCell: UITableViewCell {
             firstLabel.topAnchor.constraint(equalTo: firstImageView.bottomAnchor, constant: 5),
             firstLabel.centerXAnchor.constraint(equalTo: firstImageView.centerXAnchor),
         ])
+
+        // MARK: Постя с историями
+
         for post in posts {
             let view = UIView()
             stackView.addArrangedSubview(view)

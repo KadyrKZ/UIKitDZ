@@ -16,6 +16,7 @@
 		C9E0B12A2B854558001F9EE2 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B1292B854558001F9EE2 /* NotificationViewController.swift */; };
 		C9E0B12C2B854722001F9EE2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B12B2B854722001F9EE2 /* ProfileViewController.swift */; };
 		C9E0B12E2B854C27001F9EE2 /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B12D2B854C27001F9EE2 /* NotificationViewCell.swift */; };
+		C9E0B1302B863EF4001F9EE2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B12F2B863EF4001F9EE2 /* TabBarController.swift */; };
 		C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F075982B74DCB7004C3097 /* AppDelegate.swift */; };
 		C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */; };
 		C9F0759D2B74DCB7004C3097 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0759C2B74DCB7004C3097 /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 		C9E0B1292B854558001F9EE2 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		C9E0B12B2B854722001F9EE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C9E0B12D2B854C27001F9EE2 /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
+		C9E0B12F2B863EF4001F9EE2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C9F075952B74DCB7004C3097 /* UIKitDZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitDZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F075982B74DCB7004C3097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				C9F0759C2B74DCB7004C3097 /* ViewController.swift */,
 				C9E0B1292B854558001F9EE2 /* NotificationViewController.swift */,
 				C9E0B12B2B854722001F9EE2 /* ProfileViewController.swift */,
+				C9E0B12F2B863EF4001F9EE2 /* TabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				C9E0B12E2B854C27001F9EE2 /* NotificationViewCell.swift in Sources */,
 				C9E0B12A2B854558001F9EE2 /* NotificationViewController.swift in Sources */,
 				C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */,
+				C9E0B1302B863EF4001F9EE2 /* TabBarController.swift in Sources */,
 				C9E0B1232B852BDE001F9EE2 /* RecomendViewCell.swift in Sources */,
 				C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */,
 			);

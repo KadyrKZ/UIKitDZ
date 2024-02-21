@@ -3,24 +3,30 @@
 
 import UIKit
 
-/// NotificationViewCell
-class NotificationViewCell: UITableViewCell {
-    let avatar = UIImageView()
-    let picture = UIImageView()
-    let nameLabel: UILabel = {
+/// NotificationViewCell - ячейка уведомление
+final class NotificationViewCell: UITableViewCell {
+    // MARK: Private Properties
+
+    private let avatar = UIImageView()
+    private let picture = UIImageView()
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
     }()
 
-    let descriptionLabel: UILabel = {
+    // MARK: Текст с описание поста
+
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.numberOfLines = 0
         return label
     }()
 
-    let time: UILabel = {
+    // MARK: Время загрузки поста
+
+    private let time: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray2
@@ -28,7 +34,9 @@ class NotificationViewCell: UITableViewCell {
         return label
     }()
 
-    let followButton: UIButton = {
+    // MARK: Кнопка подписаться
+
+    private let followButton: UIButton = {
         let button = UIButton()
         button.setTitle("Подписаться", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -39,7 +47,9 @@ class NotificationViewCell: UITableViewCell {
         return button
     }()
 
-    let unsubscribeButton: UIButton = {
+    // MARK: Кнопка отписаться
+
+    private let unsubscribeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Отписаться", for: .normal)
         button.setTitleColor(.systemGray3, for: .normal)
@@ -53,6 +63,9 @@ class NotificationViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        // MARK: Вызов функции для визуала
+
         setupCell()
     }
 
@@ -60,6 +73,8 @@ class NotificationViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: Установка ячайки
 
     private func setupCell() {
         for item in [avatar, nameLabel, descriptionLabel, picture, time] {
@@ -91,6 +106,8 @@ class NotificationViewCell: UITableViewCell {
 
         ])
     }
+
+    // MARK: Конфигурация для поста
 
     func configure(contact: Notification) {
         avatar.image = contact.image
