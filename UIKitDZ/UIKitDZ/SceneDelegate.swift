@@ -4,7 +4,7 @@
 import UIKit
 
 /// tabBarController
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(
@@ -12,10 +12,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        /// Window
-        window = UIWindow(windowScene: windowScene)
+        makeWindow(scene: scene)
+    }
 
+    private func makeWindow(scene: UIScene) {
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        window = UIWindow(windowScene: windowScene)
         window?.rootViewController = TabBarController()
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()

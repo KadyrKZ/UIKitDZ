@@ -21,7 +21,7 @@ final class RecomendViewCell: UITableViewCell {
 
     // MARK: Установка ячейки
 
-    func setupCell(posts: [Recommend]) {
+    func setupCell(posts: [Recommendation]) {
         scrollView.backgroundColor = .recommend
         scrollView.addSubview(stackView)
         contentView.addSubview(scrollView)
@@ -48,7 +48,7 @@ final class RecomendViewCell: UITableViewCell {
 
     // MARK: Оброботка визуала
 
-    private func renderUI(posts: [Recommend]) {
+    private func renderUI(posts: [Recommendation]) {
         for post in posts {
             let view = UIView()
             view.backgroundColor = .white

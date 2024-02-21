@@ -110,12 +110,12 @@ final class NotificationViewCell: UITableViewCell {
     // MARK: Конфигурация для поста
 
     func configure(contact: Notification) {
-        avatar.image = contact.image
+        avatar.image = UIImage(named: contact.image)
         nameLabel.text = contact.name
         descriptionLabel.text = contact.description
-        picture.image = contact.picture
+        picture.image = UIImage(named: contact.picture)
 
-        if contact.isFollowing, contact.picture == nil {
+        if contact.isFollowing, contact.picture.isEmpty {
             contentView.addSubview(followButton)
             NSLayoutConstraint.activate([
                 followButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
@@ -123,7 +123,7 @@ final class NotificationViewCell: UITableViewCell {
                 followButton.heightAnchor.constraint(equalToConstant: 30),
                 followButton.widthAnchor.constraint(equalToConstant: 140),
             ])
-        } else if !contact.isFollowing, contact.picture == nil {
+        } else if !contact.isFollowing, contact.picture.isEmpty {
             contentView.addSubview(unsubscribeButton)
             NSLayoutConstraint.activate([
                 unsubscribeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),

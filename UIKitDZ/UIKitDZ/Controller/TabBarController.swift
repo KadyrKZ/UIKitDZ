@@ -3,12 +3,14 @@
 
 import UIKit
 
-/// TabBarController
+/// TabBarController - таббар для приложения
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabs()
     }
+
+    // MARK: Private Methods
 
     private func setupTabs() {
         let feed = createNavigation(with: "Лента", and: .feed, viewController: ViewController())
