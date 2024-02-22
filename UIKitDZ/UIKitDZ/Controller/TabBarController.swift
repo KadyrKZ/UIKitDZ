@@ -5,6 +5,12 @@ import UIKit
 
 /// TabBarController - таббар для приложения
 final class TabBarController: UITabBarController {
+    private let feedTitle = "Лента"
+    private let notification = "Уведомления"
+    private let profile = "Профиль"
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabs()
@@ -13,17 +19,17 @@ final class TabBarController: UITabBarController {
     // MARK: Private Methods
 
     private func setupTabs() {
-        let feed = createNavigation(with: "Лента", and: .feed, viewController: ViewController())
-        let notification = createNavigation(
-            with: "Уведомления",
+        let feed = createNavigationController(with: feedTitle, and: .feed, viewController: ViewController())
+        let notification = createNavigationController(
+            with: notification,
             and: .notification,
             viewController: NotificationViewController()
         )
-        let profile = createNavigation(with: "Профиль", and: .profile, viewController: ProfileViewController())
+        let profile = createNavigationController(with: profile, and: .profile, viewController: ProfileViewController())
         setViewControllers([feed, notification, profile], animated: true)
     }
 
-    private func createNavigation(
+    private func createNavigationController(
         with title: String,
         and image: UIImage?,
         viewController: UIViewController

@@ -5,17 +5,24 @@ import UIKit
 
 /// NotificationViewCell - ячейка уведомление
 final class NotificationViewCell: UITableViewCell {
+    private let timePostPublishTitle = "3д"
+    private let subscribeTitle = "Подписаться"
+    private let unSubscribeTitle = "Отписаться"
+    private let errorTitle = "init(coder:) has not been implemented"
+
     // MARK: Private Properties
 
-    private let avatar = UIImageView()
-    private let picture = UIImageView()
+    private let standartFont = "Verdana"
+    private let standartBoldFont = "Verdana-Bold"
+    private let avatarImageView = UIImageView()
+    private let pictureImageView = UIImageView()
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
     }()
 
-    // MARK: Текст с описание поста
+    // Текст с описание поста
 
     private let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -24,36 +31,35 @@ final class NotificationViewCell: UITableViewCell {
         return label
     }()
 
-    // MARK: Время загрузки поста
-
-    private let time: UILabel = {
+    // Время загрузки поста
+    private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray2
-        label.text = "3д"
+        label.text = timePostPublishTitle
         return label
     }()
 
-    // MARK: Кнопка подписаться
+    // Кнопка подписаться
 
-    private let followButton: UIButton = {
+    private lazy var followButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Подписаться", for: .normal)
+        button.setTitle(subscribeTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 10)
+        button.titleLabel?.font = UIFont(name: standartBoldFont, size: 10)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    // MARK: Кнопка отписаться
+    // Кнопка отписаться
 
-    private let unsubscribeButton: UIButton = {
+    private lazy var unsubscribeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Отписаться", for: .normal)
+        button.setTitle(unSubscribeTitle, for: .normal)
         button.setTitleColor(.systemGray3, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 10)
+        button.titleLabel?.font = UIFont(name: standartBoldFont, size: 10)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.layer.borderWidth = 1
@@ -61,61 +67,60 @@ final class NotificationViewCell: UITableViewCell {
         return button
     }()
 
+    // MARK: - Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        // MARK: Вызов функции для визуала
 
         setupCell()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(errorTitle)
     }
 
-    // MARK: Установка ячайки
+    // MARK: - Private Methods
 
     private func setupCell() {
-        for item in [avatar, nameLabel, descriptionLabel, picture, time] {
+        for item in [avatarImageView, nameLabel, descriptionLabel, pictureImageView, timeLabel] {
             item.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(item)
         }
         NSLayoutConstraint.activate([
-            avatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            avatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            avatar.heightAnchor.constraint(equalToConstant: 40),
-            avatar.widthAnchor.constraint(equalToConstant: 40),
+            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 40),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 40),
 
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
-            nameLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 8),
+            nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 
             descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 8),
-            descriptionLabel.trailingAnchor.constraint(equalTo: picture.leadingAnchor, constant: -24),
+            descriptionLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
+            descriptionLabel.trailingAnchor.constraint(equalTo: pictureImageView.leadingAnchor, constant: -24),
 
-            picture.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            picture.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            picture.heightAnchor.constraint(equalToConstant: 40),
-            picture.widthAnchor.constraint(equalToConstant: 40),
+            pictureImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            pictureImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            pictureImageView.heightAnchor.constraint(equalToConstant: 40),
+            pictureImageView.widthAnchor.constraint(equalToConstant: 40),
 
-            time.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
-            time.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 8),
-            time.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
-
+            timeLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            timeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
+            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
         ])
     }
 
-    // MARK: Конфигурация для поста
+    // MARK: - Public Methods
 
-    func configure(contact: Notification) {
-        avatar.image = UIImage(named: contact.image)
-        nameLabel.text = contact.name
-        descriptionLabel.text = contact.description
-        picture.image = UIImage(named: contact.picture)
+    func configure(with notification: Notification) {
+        avatarImageView.image = UIImage(named: notification.image)
+        nameLabel.text = notification.name
+        descriptionLabel.text = notification.description
+        pictureImageView.image = UIImage(named: notification.picture)
 
-        if contact.isFollowing, contact.picture.isEmpty {
+        if notification.isFollowing, notification.picture.isEmpty {
             contentView.addSubview(followButton)
             NSLayoutConstraint.activate([
                 followButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
@@ -123,7 +128,7 @@ final class NotificationViewCell: UITableViewCell {
                 followButton.heightAnchor.constraint(equalToConstant: 30),
                 followButton.widthAnchor.constraint(equalToConstant: 140),
             ])
-        } else if !contact.isFollowing, contact.picture.isEmpty {
+        } else if !notification.isFollowing, notification.picture.isEmpty {
             contentView.addSubview(unsubscribeButton)
             NSLayoutConstraint.activate([
                 unsubscribeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),

@@ -7,11 +7,14 @@ import UIKit
 final class RecomendationViewCell: UITableViewCell {
     // MARK: Private Property
 
+    private let standartFont = "Verdana"
+    private let standartBoldFont = "Verdana-Bold"
+    private let subscribeTitle = "Подписаться"
+    private let recommendationTitle = "Рекомендуем вам"
+    private let allRecommendationTitle = "Все"
     private let scrollView = UIScrollView()
-
-    // MARK: Стеквью для истории
-
-    lazy var stackView: UIStackView = {
+    // Стеквью для истории
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 22
@@ -19,9 +22,11 @@ final class RecomendationViewCell: UITableViewCell {
         return stackView
     }()
 
-    // MARK: Установка ячейки
+    // Установка ячейки
 
-    func setupCell(posts: [Recommendation]) {
+    // MARK: - Public Methods
+
+    func setup(with recomendations: [Recommendation]) {
         scrollView.backgroundColor = .recommendation
         scrollView.addSubview(stackView)
         contentView.addSubview(scrollView)
@@ -40,13 +45,10 @@ final class RecomendationViewCell: UITableViewCell {
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-
         ])
-
-        renderUI(posts: posts)
+        renderUI(posts: recomendations)
     }
-
-    // MARK: Оброботка визуала
+    // MARK: - Private Methods
 
     private func renderUI(posts: [Recommendation]) {
         for post in posts {
@@ -63,15 +65,15 @@ final class RecomendationViewCell: UITableViewCell {
             view.addSubview(imageView)
 
             let label = UILabel()
-            label.font = UIFont(name: "Verdana", size: 8)
+            label.font = UIFont(name: standartFont, size: 8)
             label.text = post.name
             view.addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
 
             let button = UIButton()
-            button.setTitle("Подписаться", for: .normal)
+            button.setTitle(subscribeTitle, for: .normal)
             button.titleLabel?.textColor = .white
-            button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 10)
+            button.titleLabel?.font = UIFont(name: standartBoldFont, size: 10)
             button.backgroundColor = .systemBlue
             button.layer.cornerRadius = 8
             view.addSubview(button)
@@ -79,48 +81,48 @@ final class RecomendationViewCell: UITableViewCell {
 
             // Верхняя левая метка
             let topLeftLabel = UILabel()
-            topLeftLabel.text = "Рекомендуем вам"
+            topLeftLabel.text = recommendationTitle
             topLeftLabel.font = .boldSystemFont(ofSize: 10)
             contentView.addSubview(topLeftLabel)
             topLeftLabel.translatesAutoresizingMaskIntoConstraints = false
 
             // Верхняя правая метка
             let topRightLabel = UILabel()
-            topRightLabel.text = "Все"
+            topRightLabel.text = allRecommendationTitle
             topRightLabel.textColor = .systemBlue
             topRightLabel.font = .boldSystemFont(ofSize: 10)
             contentView.addSubview(topRightLabel)
             topRightLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            // MARK: Якоря
+            setupConstraints()
+            func setupConstraints() {
+                NSLayoutConstraint.activate([
+                    view.heightAnchor.constraint(equalToConstant: 200),
+                    view.widthAnchor.constraint(equalToConstant: 185),
+                    view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45),
+                    view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25),
 
-            NSLayoutConstraint.activate([
-                view.heightAnchor.constraint(equalToConstant: 200),
-                view.widthAnchor.constraint(equalToConstant: 185),
-                view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45),
-                view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25),
+                    imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+                    imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    imageView.heightAnchor.constraint(equalToConstant: 115),
+                    imageView.widthAnchor.constraint(equalToConstant: 115),
 
-                imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-                imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: 115),
-                imageView.widthAnchor.constraint(equalToConstant: 115),
+                    label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
+                    label.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
 
-                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
-                label.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+                    button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 9),
+                    button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -14),
+                    button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+                    button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+                    button.heightAnchor.constraint(equalToConstant: 30),
 
-                button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 9),
-                button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -14),
-                button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-                button.heightAnchor.constraint(equalToConstant: 30),
+                    topLeftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+                    topLeftLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 9),
 
-                topLeftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-                topLeftLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 9),
-
-                topRightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
-                topRightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-
-            ])
+                    topRightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9),
+                    topRightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+                ])
+            }
         }
     }
 }

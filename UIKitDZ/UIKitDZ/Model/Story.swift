@@ -3,9 +3,12 @@
 
 import Foundation
 
-/// Cторисы
+/// Cторис
 struct Story {
+    /// Никнейм пользователя
     let name: String
+    /// Фото пользователя
     let photo: String
+    /// Посмотренно ли
     let viewed: Bool
 }

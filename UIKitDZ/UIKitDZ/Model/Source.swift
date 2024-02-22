@@ -1,13 +1,9 @@
 // Source.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-import UIKit
-
 /// Структура для постов
 struct Source {
-    // Все посты
-    let posts = ["firstPost", "secondPost", "thirdPost", "forthPost"]
+    /// Истории
     let story: [Story] = [
         Story(name: "lavanda123", photo: "lavanda123", viewed: true),
         Story(name: "lavanda123", photo: "lavanda123", viewed: true),
@@ -22,11 +18,7 @@ struct Source {
         Story(name: "lavanda123", photo: "lavanda123", viewed: false)
     ]
 
-    func getPost(index: Int) -> String {
-        posts[index]
-    }
-
-    // Все рекоммендационные посты
+    /// Все рекоммендационные посты
     let recommendation: [Recommendation] = [
         Recommendation(name: "сrimea_082", photo: "recommendationImage"),
         Recommendation(name: "сrimea_082", photo: "recommendationImage"),
@@ -41,7 +33,7 @@ struct Source {
         Other(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto"),
         Other(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto"),
     ]
-    /// первый пост
+    /// Первый пост
     let firstPost: Other = .init(name: "tur_v_dagestan", photo: "dagestan", friendPhoto: "friend", myPhoto: "myPhoto")
 
     static func makeContacts() -> [Notification] {
@@ -96,6 +88,8 @@ struct Source {
             ),
         ]
     }
+
+    // MARK: - Для фильтра данных
 
     static func makeContactsWithGroup() -> [[Notification]] {
         let today = makeContacts().filter { $0.timeNotified == .today }

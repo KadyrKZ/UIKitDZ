@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Окно приложение
+/// Окно приложения
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 

@@ -5,37 +5,60 @@ import UIKit
 
 /// NotificationViewController - страница уведомлении
 final class NotificationViewController: UIViewController {
-    // MARK: Реализация тейблвью
+    // MARK: - Private Properties
 
-    let tableView: UITableView = .init()
+    private let standartFont = "Verdana"
+    private let standartBoldFont = "Verdana-Bold"
+    private let today = "Сегодня"
+    private let thisWeek = "На этой неделе"
+    private let notification = "Уведомления"
+    private let notificationCell = "NotificationViewCell"
+    private var contacts = Source.makeContactsWithGroup()
 
-    var contacts = Source.makeContactsWithGroup()
+    // MARK: - Visual Components
+
+    private let tableView: UITableView = .init()
+
     // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
 
-        // MARK: Настройка фона
+    private func setupUI() {
+        setupNavigationItem()
+        setupTableView()
+    }
 
+    private func setupNavigationItem() {
         view.backgroundColor = .white
-        navigationItem.title = "Уведомления"
+        navigationItem.title = notification
         navigationController?.navigationBar.prefersLargeTitles = true
-        if let font = UIFont(name: "Verdana-Bold", size: 24) {
+        if let font = UIFont(name: standartBoldFont, size: 24) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: font]
         }
         /// еще один вариант let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size:
         /// 17)!]
         /// UINavigationBar.appearance().titleTextAttributes = attributes
+    }
 
-        setupTableView()
-
-        // MARK: Регистрируем ячейки
-
-        tableView.register(NotificationViewCell.self, forCellReuseIdentifier: "NotificationViewCell")
+    private func setupTableView() {
+        view.addSubview(tableView)
+        // Регистрируем ячейки
+        tableView.register(NotificationViewCell.self, forCellReuseIdentifier: notificationCell)
         tableView.dataSource = self
         tableView.delegate = self
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
 }
 
@@ -60,8 +83,8 @@ extension NotificationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Сегодня"
-        case 1: return "На этой неделе"
+        case 0: return today
+        case 1: return thisWeek
         default:
             return nil
         }
@@ -78,10 +101,10 @@ extension NotificationViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationViewCell", for: indexPath) as?
-            NotificationViewCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: notificationCell, for: indexPath) as?
+            NotificationViewCell else { return UITableViewCell() }
 
-        cell.configure(contact: contacts[indexPath.section][indexPath.row])
+        cell.configure(with: contacts[indexPath.section][indexPath.row])
         return cell
     }
 
@@ -94,20 +117,5 @@ extension NotificationViewController: UITableViewDataSource {
             contacts[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
         }
-    }
-}
-
-// MARK: Установка таблицы в контроллер
-
-extension NotificationViewController {
-    func setupTableView() {
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
     }
 }

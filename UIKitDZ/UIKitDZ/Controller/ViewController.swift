@@ -7,82 +7,78 @@ import UIKit
 final class ViewController: UIViewController {
     // MARK: Private Properties
 
-    // MARK: Массив для типов постов
-
     private let postTypes: [PostTypes] = [.stories, .firstPost, .recommendationPost, .otherPosts]
-
-    // MARK: Контроллер реализован в TableView
+    private let storyViewCell = "StoryViewCell"
+    private let recomendationViewCell = "RecomendationViewCell"
+    private let otherViewCell = "OtherViewCell"
+    private let firstViewCell = "FirstViewCell"
+    private let logoTitle = "RMLink"
+    private let logoFont = "Dancing Script"
+    private let message = "message"
+    // Контроллер реализован в TableView
 
     private let tableView = UITableView()
 
-    // MARK: для работы с моделем делаю экземпляр
+    // для работы с моделем делаю экземпляр
 
     private let source = Source()
 
     // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setupUI()
     }
 
-    // MARK: Функция для визуала
+    // Функция для визуала
 
     private func setupUI() {
+        view.backgroundColor = .white
         createHeaderButton()
         configuraTableView()
     }
 
-    // MARK: Функция для конфигурации таблицу
-
+    // Функция для конфигурации таблицу
     private func configuraTableView() {
         // Регистрирую все ячейки
-        tableView.register(StoryViewCell.self, forCellReuseIdentifier: "StoryViewCell")
-        tableView.register(RecomendationViewCell.self, forCellReuseIdentifier: "RecomendationViewCell")
-        tableView.register(OtherViewCell.self, forCellReuseIdentifier: "OtherViewCell")
-        tableView.register(FirstViewCell.self, forCellReuseIdentifier: "FirstViewCell")
+        tableView.register(StoryViewCell.self, forCellReuseIdentifier: storyViewCell)
+        tableView.register(RecomendationViewCell.self, forCellReuseIdentifier: recomendationViewCell)
+        tableView.register(OtherViewCell.self, forCellReuseIdentifier: otherViewCell)
+        tableView.register(FirstViewCell.self, forCellReuseIdentifier: firstViewCell)
         // Подключаю делегат и датасорс для работы с таблицой
         tableView.dataSource = self
-        tableView.delegate = self
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
-        // MARK: Констрейнты для полного покрытие экрана тейблвью
+        // Констрейнты для полного покрытие экрана тейблвью
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-
         ])
     }
 
-    // MARK: Функция для создание хедера
-
-    fileprivate func createHeaderButton() {
+    // Функция для создание хедера
+    private func createHeaderButton() {
         /// Логотип приложения с кастомным шрифтом
         let logoLabel = UILabel()
-        logoLabel.text = "RMLink"
-        logoLabel.font = UIFont(name: "Dancing Script", size: 22)
+        logoLabel.text = logoTitle
+        logoLabel.font = UIFont(name: logoFont, size: 22)
         logoLabel.sizeToFit()
 
         let leftBarButton = UIBarButtonItem(customView: logoLabel)
 
         /// Кнопка сообщение верху
         let imageButton = UIButton()
-        let image = UIImage(named: "message")
+        let image = UIImage(named: message)
         imageButton.setImage(image, for: .normal)
         imageButton.tintColor = .black
         imageButton.widthAnchor.constraint(equalToConstant: 18).isActive = true
         imageButton.heightAnchor.constraint(equalToConstant: 18).isActive = true
         navigationItem.leftBarButtonItem = leftBarButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imageButton)
-    }
-
-    @objc func imageButtonTapped() {
-        print("Скоро")
     }
 }
 
@@ -91,14 +87,18 @@ final class ViewController: UIViewController {
 extension ViewController {
     /// Типы постов
     enum PostTypes {
+        /// Истории
         case stories
+        /// Первый пост
         case firstPost
+        /// Рекоммендованные посты
         case recommendationPost
+        /// Другие посты
         case otherPosts
     }
 }
 
-// MARK: Расширение для реализации UITableViewDataSource
+// MARK: Расширение для реализации методов UITableViewDataSource
 
 extension ViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -110,7 +110,7 @@ extension ViewController: UITableViewDataSource {
         case .stories, .firstPost, .recommendationPost:
             return 1
         case .otherPosts:
-            return source.posts.count
+            return source.otherPosts.count
         }
     }
 
@@ -118,42 +118,40 @@ extension ViewController: UITableViewDataSource {
         switch postTypes[indexPath.section] {
         case .stories:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: "StoryViewCell",
+                withIdentifier: storyViewCell,
                 for: indexPath
             ) as? StoryViewCell
             else { return UITableViewCell() }
             let post = source.story
-            cell.setupCell(posts: post)
+            cell.setup(with: post)
             return cell
         case .firstPost:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: "FirstViewCell",
+                withIdentifier: firstViewCell,
                 for: indexPath
             ) as? FirstViewCell
             else { return UITableViewCell() }
             let post = source.firstPost
-            cell.setupCell(post: post)
+            cell.setup(with: post)
             return cell
         case .recommendationPost:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: "RecomendationViewCell",
+                withIdentifier: recomendationViewCell,
                 for: indexPath
             ) as? RecomendationViewCell
             else { return UITableViewCell() }
             let post = source.recommendation
-            cell.setupCell(posts: post)
+            cell.setup(with: post)
             return cell
         case .otherPosts:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: "OtherViewCell",
+                withIdentifier: otherViewCell,
                 for: indexPath
             ) as? OtherViewCell
             else { return UITableViewCell() }
             let post = source.otherPosts
-            cell.setupCell(post: post)
+            cell.setup(with: post)
             return cell
         }
     }
 }
-
-extension ViewController: UITableViewDelegate {}
