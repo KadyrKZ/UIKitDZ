@@ -1,10 +1,10 @@
-// StoryViewCell.swift
+// MyStoryViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-/// StoryViewCell
-final class StoryViewCell: UITableViewCell {
+/// MyStoryViewCell
+class MyStoryViewCell: UITableViewCell {
     // MARK: Private Property
 
     private let standartFont = "Verdana"
@@ -38,7 +38,7 @@ final class StoryViewCell: UITableViewCell {
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 80),
+            scrollView.heightAnchor.constraint(equalToConstant: 124),
 
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 12),

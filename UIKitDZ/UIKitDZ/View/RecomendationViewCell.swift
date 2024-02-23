@@ -48,6 +48,7 @@ final class RecomendationViewCell: UITableViewCell {
         ])
         renderUI(posts: recomendations)
     }
+
     // MARK: - Private Methods
 
     private func renderUI(posts: [Recommendation]) {
@@ -79,14 +80,12 @@ final class RecomendationViewCell: UITableViewCell {
             view.addSubview(button)
             button.translatesAutoresizingMaskIntoConstraints = false
 
-            // Верхняя левая метка
             let topLeftLabel = UILabel()
             topLeftLabel.text = recommendationTitle
             topLeftLabel.font = .boldSystemFont(ofSize: 10)
             contentView.addSubview(topLeftLabel)
             topLeftLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            // Верхняя правая метка
             let topRightLabel = UILabel()
             topRightLabel.text = allRecommendationTitle
             topRightLabel.textColor = .systemBlue

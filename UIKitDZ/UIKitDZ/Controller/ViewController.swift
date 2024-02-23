@@ -20,7 +20,6 @@ final class ViewController: UIViewController {
     private let tableView = UITableView()
 
     // для работы с моделем делаю экземпляр
-
     private let source = Source()
 
     // MARK: - Life Cycle
