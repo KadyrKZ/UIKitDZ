@@ -5,7 +5,6 @@ import UIKit
 
 /// ProfileViewController - скора будет
 final class ProfileViewController: UIViewController {
-    
     private let standartFont = "Verdana"
     private let standartBoldFont = "Verdana-Bold"
     private let blockTypes: [BlockTypes] = [.profile, .myStory, .myPost]
@@ -20,7 +19,6 @@ final class ProfileViewController: UIViewController {
     }
 
     private func setupUI() {
-        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self

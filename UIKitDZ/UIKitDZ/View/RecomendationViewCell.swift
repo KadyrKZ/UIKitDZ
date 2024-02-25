@@ -18,7 +18,6 @@ final class RecomendationViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 22
-        stackView.alignment = .center
         return stackView
     }()
 
@@ -38,7 +37,6 @@ final class RecomendationViewCell: UITableViewCell {
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 270),
 
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 17),
@@ -96,7 +94,7 @@ final class RecomendationViewCell: UITableViewCell {
             setupConstraints()
             func setupConstraints() {
                 NSLayoutConstraint.activate([
-                    view.heightAnchor.constraint(equalToConstant: 200),
+                    //   view.heightAnchor.constraint(equalToConstant: 200),
                     view.widthAnchor.constraint(equalToConstant: 185),
                     view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45),
                     view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25),

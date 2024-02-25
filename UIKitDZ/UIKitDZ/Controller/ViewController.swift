@@ -16,7 +16,6 @@ final class ViewController: UIViewController {
     private let logoFont = "Dancing Script"
     private let message = "message"
     // Контроллер реализован в TableView
-
     private let tableView = UITableView()
 
     // для работы с моделем делаю экземпляр
@@ -46,6 +45,7 @@ final class ViewController: UIViewController {
         tableView.register(FirstViewCell.self, forCellReuseIdentifier: firstViewCell)
         // Подключаю делегат и датасорс для работы с таблицой
         tableView.dataSource = self
+        tableView.delegate = self
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -78,6 +78,12 @@ final class ViewController: UIViewController {
         imageButton.heightAnchor.constraint(equalToConstant: 18).isActive = true
         navigationItem.leftBarButtonItem = leftBarButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imageButton)
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
 }
 
@@ -148,7 +154,7 @@ extension ViewController: UITableViewDataSource {
                 for: indexPath
             ) as? OtherViewCell
             else { return UITableViewCell() }
-            let post = source.otherPosts
+            let post = source.otherPosts[indexPath.row]
             cell.setup(with: post)
             return cell
         }

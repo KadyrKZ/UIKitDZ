@@ -45,7 +45,7 @@ class ProfileViewCell: UITableViewCell {
         return label
     }
 
-    func createProfileView() -> UIView {
+    func createProfileView() {
         let profileImage = UIImageView()
         profileImage.image = .myPhoto
         profileImage.translatesAutoresizingMaskIntoConstraints = false
@@ -150,7 +150,7 @@ class ProfileViewCell: UITableViewCell {
             addFriendButton.heightAnchor.constraint(equalToConstant: 27)
         ])
 
-        return profileView
+        // return profileView
     }
 
     @objc private func openSpaceXWebsite() {
