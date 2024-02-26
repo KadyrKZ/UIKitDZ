@@ -3,8 +3,10 @@
 
 import UIKit
 
-/// ProfileViewController - скора будет
+/// ProfileViewController - провиля узера
 final class ProfileViewController: UIViewController {
+    // MARK: - Private Properties
+
     private let standartFont = "Verdana"
     private let standartBoldFont = "Verdana-Bold"
     private let blockTypes: [BlockTypes] = [.profile, .myStory, .myPost]
@@ -12,12 +14,15 @@ final class ProfileViewController: UIViewController {
     private let source = Source()
     private let tableView = UITableView()
 
+    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
     }
 
+    // Установка визуала
     private func setupUI() {
         tableView.separatorStyle = .none
         tableView.dataSource = self
@@ -26,13 +31,60 @@ final class ProfileViewController: UIViewController {
         tableView.register(MyStoryViewCell.self, forCellReuseIdentifier: "MyStoryViewCell")
         tableView.register(MyPostViewCell.self, forCellReuseIdentifier: "MyPostViewCell")
         view.addSubview(tableView)
+        setupNavigationBar()
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+    }
+
+    // Кривой навбар
+    private func setupNavigationBar() {
+        let navigationItem = UINavigationItem(title: "Profile")
+
+        let leftImage = UIImage(named: "lock")?.withRenderingMode(.alwaysTemplate)
+        let leftButton = UIButton(type: .custom)
+        leftButton.setImage(leftImage, for: .normal)
+        leftButton.tintColor = .black
+        leftButton.imageView?.contentMode = .scaleAspectFit
+        leftButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        let leftBarButtonItem = UIBarButtonItem(customView: leftButton)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+
+        let rightImage1 = UIImage(named: "addProfile")?.withRenderingMode(.alwaysTemplate)
+        let rightImage2 = UIImage(named: "setting")?.withRenderingMode(.alwaysTemplate)
+        let rightButton1 = UIButton(type: .custom)
+        rightButton1.setImage(rightImage1, for: .normal)
+        rightButton1.tintColor = .black
+        rightButton1.imageView?.contentMode = .scaleAspectFit
+        rightButton1.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+
+        let rightButton2 = UIButton(type: .custom)
+        rightButton2.setImage(rightImage2, for: .normal)
+        rightButton2.tintColor = .black
+        rightButton2.imageView?.contentMode = .scaleAspectFit
+        rightButton2.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+
+        let rightBarButtonItem1 = UIBarButtonItem(customView: rightButton1)
+        let rightBarButtonItem2 = UIBarButtonItem(customView: rightButton2)
+        navigationItem.rightBarButtonItems = [rightBarButtonItem1, rightBarButtonItem2]
+
+        let navigationBar = UINavigationBar()
+        navigationBar.backgroundColor = .white
+        navigationBar.isTranslucent = false
+        navigationBar.items = [navigationItem]
+        navigationBar.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(navigationBar)
+
+        NSLayoutConstraint.activate([
+            navigationBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
