@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9873E612B7C7F85005BAFF8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9873E602B7C7F85005BAFF8 /* MainViewController.swift */; };
+		C9873E632B7C9BB3005BAFF8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9873E622B7C9BB3005BAFF8 /* DetailViewController.swift */; };
+		C9873E652B7CA66E005BAFF8 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9873E642B7CA66E005BAFF8 /* OrderViewController.swift */; };
+		C9873E672B7CA8CD005BAFF8 /* AddBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9873E662B7CA8CD005BAFF8 /* AddBlockViewController.swift */; };
+		C9873E692B7CACF4005BAFF8 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9873E682B7CACF4005BAFF8 /* EndViewController.swift */; };
 		C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F075982B74DCB7004C3097 /* AppDelegate.swift */; };
 		C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */; };
 		C9F0759D2B74DCB7004C3097 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F0759C2B74DCB7004C3097 /* ViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9873E602B7C7F85005BAFF8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C9873E622B7C9BB3005BAFF8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C9873E642B7CA66E005BAFF8 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		C9873E662B7CA8CD005BAFF8 /* AddBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlockViewController.swift; sourceTree = "<group>"; };
+		C9873E682B7CACF4005BAFF8 /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		C9F075952B74DCB7004C3097 /* UIKitDZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitDZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F075982B74DCB7004C3097 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +69,11 @@
 				C9F075982B74DCB7004C3097 /* AppDelegate.swift */,
 				C9F0759A2B74DCB7004C3097 /* SceneDelegate.swift */,
 				C9F0759C2B74DCB7004C3097 /* ViewController.swift */,
+				C9873E602B7C7F85005BAFF8 /* MainViewController.swift */,
+				C9873E622B7C9BB3005BAFF8 /* DetailViewController.swift */,
+				C9873E662B7CA8CD005BAFF8 /* AddBlockViewController.swift */,
+				C9873E642B7CA66E005BAFF8 /* OrderViewController.swift */,
+				C9873E682B7CACF4005BAFF8 /* EndViewController.swift */,
 				C9F0759E2B74DCB7004C3097 /* Main.storyboard */,
 				C9F075A12B74DCB8004C3097 /* Assets.xcassets */,
 				C9F075A32B74DCB8004C3097 /* LaunchScreen.storyboard */,
@@ -183,9 +198,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9873E692B7CACF4005BAFF8 /* EndViewController.swift in Sources */,
 				C9F0759D2B74DCB7004C3097 /* ViewController.swift in Sources */,
 				C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */,
+				C9873E632B7C9BB3005BAFF8 /* DetailViewController.swift in Sources */,
 				C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */,
+				C9873E612B7C7F85005BAFF8 /* MainViewController.swift in Sources */,
+				C9873E672B7CA8CD005BAFF8 /* AddBlockViewController.swift in Sources */,
+				C9873E652B7CA66E005BAFF8 /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
