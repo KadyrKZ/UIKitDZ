@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9CE842A2B87E97100272AB9 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CE84292B87E97100272AB9 /* ProfileViewCell.swift */; };
+		C9CE842C2B88301700272AB9 /* MyStoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CE842B2B88301700272AB9 /* MyStoryViewCell.swift */; };
+		C9CE842E2B88306500272AB9 /* MyPostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CE842D2B88306500272AB9 /* MyPostViewCell.swift */; };
 		C9E0B11B2B8500D1001F9EE2 /* DancingScript-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9E0B11A2B8500D1001F9EE2 /* DancingScript-VariableFont_wght.ttf */; };
 		C9E0B11D2B851400001F9EE2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B11C2B851400001F9EE2 /* Source.swift */; };
 		C9E0B11F2B851FBA001F9EE2 /* StoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E0B11E2B851FBA001F9EE2 /* StoryViewCell.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9CE84292B87E97100272AB9 /* ProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewCell.swift; path = UIKitDZ/View/ProfileViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C9CE842B2B88301700272AB9 /* MyStoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryViewCell.swift; sourceTree = "<group>"; };
+		C9CE842D2B88306500272AB9 /* MyPostViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyPostViewCell.swift; path = UIKitDZ/View/MyPostViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C9E0B11A2B8500D1001F9EE2 /* DancingScript-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		C9E0B11C2B851400001F9EE2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		C9E0B11E2B851FBA001F9EE2 /* StoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewCell.swift; sourceTree = "<group>"; };
@@ -68,8 +74,11 @@
 		C9E0B1242B852BE9001F9EE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C9CE84292B87E97100272AB9 /* ProfileViewCell.swift */,
+				C9CE842D2B88306500272AB9 /* MyPostViewCell.swift */,
 				C9E0B1222B852BDE001F9EE2 /* RecomendationViewCell.swift */,
 				C9E0B11E2B851FBA001F9EE2 /* StoryViewCell.swift */,
+				C9CE842B2B88301700272AB9 /* MyStoryViewCell.swift */,
 				C9E0B1252B852C08001F9EE2 /* OtherViewCell.swift */,
 				C9E0B1202B852BCF001F9EE2 /* FirstViewCell.swift */,
 				C9E0B12D2B854C27001F9EE2 /* NotificationViewCell.swift */,
@@ -249,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9CE842A2B87E97100272AB9 /* ProfileViewCell.swift in Sources */,
 				C9E0B11D2B851400001F9EE2 /* Source.swift in Sources */,
 				C9F0759D2B74DCB7004C3097 /* ViewController.swift in Sources */,
 				C9E0B12C2B854722001F9EE2 /* ProfileViewController.swift in Sources */,
@@ -260,11 +270,13 @@
 				C9E0B13A2B8656F1001F9EE2 /* Description.swift in Sources */,
 				C9E0B12E2B854C27001F9EE2 /* NotificationViewCell.swift in Sources */,
 				C9E0B12A2B854558001F9EE2 /* NotificationViewController.swift in Sources */,
+				C9CE842C2B88301700272AB9 /* MyStoryViewCell.swift in Sources */,
 				C9E0B1322B865623001F9EE2 /* Story.swift in Sources */,
 				C9F075992B74DCB7004C3097 /* AppDelegate.swift in Sources */,
 				C9E0B1302B863EF4001F9EE2 /* TabBarController.swift in Sources */,
 				C9E0B1232B852BDE001F9EE2 /* RecomendationViewCell.swift in Sources */,
 				C9E0B1342B865663001F9EE2 /* Recommendation.swift in Sources */,
+				C9CE842E2B88306500272AB9 /* MyPostViewCell.swift in Sources */,
 				C9F0759B2B74DCB7004C3097 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,6 @@ final class RecomendationViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 22
-        stackView.alignment = .center
         return stackView
     }()
 
@@ -38,7 +37,6 @@ final class RecomendationViewCell: UITableViewCell {
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 270),
 
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 17),
@@ -48,6 +46,7 @@ final class RecomendationViewCell: UITableViewCell {
         ])
         renderUI(posts: recomendations)
     }
+
     // MARK: - Private Methods
 
     private func renderUI(posts: [Recommendation]) {
@@ -79,14 +78,12 @@ final class RecomendationViewCell: UITableViewCell {
             view.addSubview(button)
             button.translatesAutoresizingMaskIntoConstraints = false
 
-            // Верхняя левая метка
             let topLeftLabel = UILabel()
             topLeftLabel.text = recommendationTitle
             topLeftLabel.font = .boldSystemFont(ofSize: 10)
             contentView.addSubview(topLeftLabel)
             topLeftLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            // Верхняя правая метка
             let topRightLabel = UILabel()
             topRightLabel.text = allRecommendationTitle
             topRightLabel.textColor = .systemBlue
@@ -97,7 +94,7 @@ final class RecomendationViewCell: UITableViewCell {
             setupConstraints()
             func setupConstraints() {
                 NSLayoutConstraint.activate([
-                    view.heightAnchor.constraint(equalToConstant: 200),
+                    //   view.heightAnchor.constraint(equalToConstant: 200),
                     view.widthAnchor.constraint(equalToConstant: 185),
                     view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45),
                     view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25),
