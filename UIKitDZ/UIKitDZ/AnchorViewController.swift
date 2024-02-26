@@ -5,7 +5,8 @@ import UIKit
 
 /// AnchorViewController - страница с реализацией анкеров
 class AnchorViewController: UIViewController {
-    // MARK: 
+    // MARK: Мшуц
+
     let mainView = UIView()
     let redLightView = LightView()
     let yelloyLightView = LightView()
@@ -17,7 +18,9 @@ class AnchorViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-//MARK: - При повороте смартфона
+
+    // MARK: - При повороте смартфона
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
@@ -35,7 +38,8 @@ class AnchorViewController: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
-// Установка визуала
+
+    // Установка визуала
     private func setupUI() {
         mainView.backgroundColor = .black
         mainView.addSubview(redLightView)
@@ -54,6 +58,7 @@ class AnchorViewController: UIViewController {
 
         setupStackView()
     }
+
     // Все анкера
     func setupStackView() {
         mainView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 107).isActive = true
