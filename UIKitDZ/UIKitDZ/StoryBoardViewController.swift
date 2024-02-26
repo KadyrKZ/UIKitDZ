@@ -3,10 +3,5 @@
 
 import UIKit
 
-/// StoryBoardViewController
-class StoryBoardViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("ds")
-    }
-}
+/// Реализация на сторибоарде
+final class StoryBoardViewController: UIViewController {}
