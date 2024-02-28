@@ -5,15 +5,16 @@ import UIKit
 
 /// NotificationViewCell - ячейка уведомление
 final class NotificationViewCell: UITableViewCell {
-    private let timePostPublishTitle = "3д"
-    private let subscribeTitle = "Подписаться"
-    private let unSubscribeTitle = "Отписаться"
-    private let errorTitle = "init(coder:) has not been implemented"
-
-    // MARK: Private Properties
-
-    private let standartFont = "Verdana"
-    private let standartBoldFont = "Verdana-Bold"
+    // MARK: - Private Constants
+    private enum Constants {
+        static let timePostPublishTitle = "3д"
+        static let subscribeTitle = "Подписаться"
+        static let unSubscribeTitle = "Отписаться"
+        static let errorTitle = "init(coder:) has not been implemented"
+        static let standartFont = "Verdana"
+        static let standartBoldFont = "Verdana-Bold"
+    }
+    // MARK: - Visual Components
     private let avatarImageView = UIImageView()
     private let pictureImageView = UIImageView()
     private let nameLabel: UILabel = {
@@ -36,7 +37,7 @@ final class NotificationViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray2
-        label.text = timePostPublishTitle
+        label.text = Constants.timePostPublishTitle
         return label
     }()
 
@@ -44,9 +45,9 @@ final class NotificationViewCell: UITableViewCell {
 
     private lazy var followButton: UIButton = {
         let button = UIButton()
-        button.setTitle(subscribeTitle, for: .normal)
+        button.setTitle(Constants.subscribeTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: standartBoldFont, size: 10)
+        button.titleLabel?.font = UIFont(name: Constants.standartBoldFont, size: 10)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,9 +58,9 @@ final class NotificationViewCell: UITableViewCell {
 
     private lazy var unsubscribeButton: UIButton = {
         let button = UIButton()
-        button.setTitle(unSubscribeTitle, for: .normal)
+        button.setTitle(Constants.unSubscribeTitle, for: .normal)
         button.setTitleColor(.systemGray3, for: .normal)
-        button.titleLabel?.font = UIFont(name: standartBoldFont, size: 10)
+        button.titleLabel?.font = UIFont(name: Constants.standartBoldFont, size: 10)
         button.backgroundColor = .white
         button.layer.cornerRadius = 8
         button.layer.borderWidth = 1
@@ -77,41 +78,8 @@ final class NotificationViewCell: UITableViewCell {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError(errorTitle)
+        super.init(coder: coder)
     }
-
-    // MARK: - Private Methods
-
-    private func setupCell() {
-        for item in [avatarImageView, nameLabel, descriptionLabel, pictureImageView, timeLabel] {
-            item.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(item)
-        }
-        NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 40),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 40),
-
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
-            nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-
-            descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
-            descriptionLabel.trailingAnchor.constraint(equalTo: pictureImageView.leadingAnchor, constant: -24),
-
-            pictureImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            pictureImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            pictureImageView.heightAnchor.constraint(equalToConstant: 40),
-            pictureImageView.widthAnchor.constraint(equalToConstant: 40),
-
-            timeLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
-            timeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
-            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
-        ])
-    }
-
     // MARK: - Public Methods
 
     func configure(with notification: Notification) {
@@ -139,5 +107,75 @@ final class NotificationViewCell: UITableViewCell {
         } else {
             followButton.removeFromSuperview()
         }
+    }
+
+    // MARK: - Private Methods
+
+    private func setupCell() {
+        for item in [avatarImageView, nameLabel, descriptionLabel, pictureImageView, timeLabel] {
+            item.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview(item)
+        }
+        setupAvatarImageViewConstraints()
+        setupNameLabelConstraints()
+        setupDescriptionLabelConstraints()
+        setupDescriptionLabelConstraints()
+        setupPictureImageViewConstraints()
+        setupTimeLabelConstraints()
+    }
+    
+    private func setupAvatarImageViewConstraints() {
+        NSLayoutConstraint.activate([
+            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 40),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 40),
+            ])
+    }
+    
+    private func setupNameLabelConstraints() {
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
+            nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+        ])
+    }
+    
+    private func setupDescriptionLabelConstraints() {
+        NSLayoutConstraint.activate([
+            descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
+            descriptionLabel.trailingAnchor.constraint(equalTo: pictureImageView.leadingAnchor, constant: -24),
+
+            pictureImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            pictureImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            pictureImageView.heightAnchor.constraint(equalToConstant: 40),
+            pictureImageView.widthAnchor.constraint(equalToConstant: 40),
+
+            timeLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            timeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
+            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
+        ])
+    }
+    
+    private func setupPictureImageViewConstraints() {
+        NSLayoutConstraint.activate([
+            pictureImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            pictureImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            pictureImageView.heightAnchor.constraint(equalToConstant: 40),
+            pictureImageView.widthAnchor.constraint(equalToConstant: 40),
+
+            timeLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            timeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
+            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
+        ])
+    }
+    
+    private func setupTimeLabelConstraints() {
+        NSLayoutConstraint.activate([
+            timeLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            timeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
+            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
+        ])
     }
 }

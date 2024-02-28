@@ -5,6 +5,6 @@ import Foundation
 
 /// Описание для уведомлении
 struct Description {
-    static let description = "хорошое фото"
-    static let description2 = "тоже хочу отдохнуть"
+    static let goodPhotoText = "хорошое фото"
+    static let wantVacationText = "тоже хочу отдохнуть"
 }

@@ -14,7 +14,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         makeWindow(scene: scene)
     }
-
+// MARK: - Private Method
     private func makeWindow(scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 

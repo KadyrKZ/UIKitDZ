@@ -6,19 +6,20 @@ import UIKit
 /// OtherViewCell - все остальные ячейки
 final class OtherViewCell: UITableViewCell {
     // MARK: Private Property
-
-    private let standartFont = "Verdana"
-    private let standartBoldFont = "Verdana-Bold"
-    private let likeImageName = "like"
-    private let commentImageName = "comment"
-    private let sendImageName = "send"
-    private let bookmarkImageName = "bookmark"
-    private let likeCountTitle = "Нравится : 201"
-    private let simpleTitle = "Let's go"
-    private let justTitle = "Все круто"
-    private let commentDotsTitle = "Комментировать..."
-    private let timeTitle = "10 минут назад"
-    private let optionImageName = "optionImage"
+    private enum Constants {
+        static let standartFont = "Verdana"
+        static let standartBoldFont = "Verdana-Bold"
+        static let likeImageName = "like"
+        static let commentImageName = "comment"
+        static let sendImageName = "send"
+        static let bookmarkImageName = "bookmark"
+        static let likeCountTitle = "Нравится : 201"
+        static let simpleTitle = "Let's go"
+        static let justTitle = "Все круто"
+        static let commentDotsTitle = "Комментировать..."
+        static let timeTitle = "10 минут назад"
+        static let optionImageName = "optionImage"
+    }
     private let scrollView = UIScrollView()
 
     // Стек для ячеек
@@ -35,25 +36,38 @@ final class OtherViewCell: UITableViewCell {
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        setupConstraints()
+        renderUI(posts: post)
+    }
+    
+    
 
+    // MARK: - Private Methods
+    
+    private func setupConstraints() {
+        setupScrollViewConstraints()
+        setupStackViewConstraints()
+    }
+    private func setupScrollViewConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             scrollView.heightAnchor.constraint(equalToConstant: 411),
-
+        ])
+    }
+    private func setupStackViewConstraints() {
+        
+        NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
         ])
-
-        renderUI(posts: post)
     }
-
-    // MARK: - Private Methods
 
     private func renderUI(posts: [Other]) {
         for post in posts {
@@ -65,33 +79,33 @@ final class OtherViewCell: UITableViewCell {
             let avatarImage = makeImageView(imageName: post.friendPhoto, in: view)
 
             let label = UILabel()
-            label.font = UIFont(name: standartFont, size: 12)
+            label.font = UIFont(name: Constants.standartFont, size: 12)
             label.text = post.name
             view.addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
 
-            let likeButton = makeButton(imageName: likeImageName, in: view)
-            let commentButton = makeButton(imageName: commentImageName, in: view)
-            let shareButton = makeButton(imageName: sendImageName, in: view)
-            let bookmarkButton = makeButton(imageName: bookmarkImageName, in: view)
+            let likeButton = makeButton(imageName: Constants.likeImageName, in: view)
+            let commentButton = makeButton(imageName: Constants.commentImageName, in: view)
+            let shareButton = makeButton(imageName: Constants.sendImageName, in: view)
+            let bookmarkButton = makeButton(imageName: Constants.bookmarkImageName, in: view)
 
             let likeLabel = UILabel()
-            likeLabel.font = UIFont(name: standartBoldFont, size: 10)
-            likeLabel.text = likeCountTitle
+            likeLabel.font = UIFont(name: Constants.standartBoldFont, size: 10)
+            likeLabel.text = Constants.likeCountTitle
             likeLabel.textColor = .black
             view.addSubview(likeLabel)
             likeLabel.translatesAutoresizingMaskIntoConstraints = false
 
             let titleLabel = UILabel()
             titleLabel.font = UIFont.boldSystemFont(ofSize: 10)
-            titleLabel.text = simpleTitle
+            titleLabel.text = Constants.simpleTitle
             titleLabel.textColor = .black
             view.addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
             let descriptionLabel = UILabel()
             descriptionLabel.font = UIFont.systemFont(ofSize: 10)
-            descriptionLabel.text = justTitle
+            descriptionLabel.text = Constants.justTitle
             descriptionLabel.textColor = .black
             view.addSubview(descriptionLabel)
             descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -99,20 +113,20 @@ final class OtherViewCell: UITableViewCell {
             let avatarImageView = makeImageView(imageName: post.myPhoto, in: view)
 
             let commentButtonLabel = UILabel()
-            commentButtonLabel.text = commentDotsTitle
+            commentButtonLabel.text = Constants.commentDotsTitle
             commentButtonLabel.font = UIFont.systemFont(ofSize: 10)
             commentButtonLabel.textColor = .systemGray2
             view.addSubview(commentButtonLabel)
             commentButtonLabel.translatesAutoresizingMaskIntoConstraints = false
 
             let timeLabel = UILabel()
-            timeLabel.text = timeTitle
+            timeLabel.text = Constants.timeTitle
             timeLabel.font = UIFont.systemFont(ofSize: 10)
             timeLabel.textColor = .systemGray2
             view.addSubview(timeLabel)
             timeLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            let moreOptionsButton = makeButton(imageName: optionImageName, in: view)
+            let moreOptionsButton = makeButton(imageName: Constants.optionImageName, in: view)
             setupConstraints()
             func setupConstraints() {
                 NSLayoutConstraint.activate([

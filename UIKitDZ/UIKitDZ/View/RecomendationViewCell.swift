@@ -6,12 +6,15 @@ import UIKit
 /// RecomendationViewCell ячейка с рекоммендациями
 final class RecomendationViewCell: UITableViewCell {
     // MARK: Private Property
-
-    private let standartFont = "Verdana"
-    private let standartBoldFont = "Verdana-Bold"
-    private let subscribeTitle = "Подписаться"
-    private let recommendationTitle = "Рекомендуем вам"
-    private let allRecommendationTitle = "Все"
+    private enum Constants {
+        static let standartFont = "Verdana"
+        static let standartBoldFont = "Verdana-Bold"
+        static let subscribeTitle = "Подписаться"
+        static let recommendationTitle = "Рекомендуем вам"
+        static let allRecommendationTitle = "Все"
+    }
+    
+    //MARK: - Visaual Components
     private let scrollView = UIScrollView()
     // Стеквью для истории
     private lazy var stackView: UIStackView = {
@@ -32,26 +35,38 @@ final class RecomendationViewCell: UITableViewCell {
         contentView.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
+        setupContraint()
+        renderUI(recomendations: recomendations)
+    }
+    // MARK: - Private Methods
+    
+    private func setupContraint(){
+        setupScrollViewContraint()
+        setupStackViewContraint()
+    }
+    
+    private func setupScrollViewContraint(){
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             scrollView.heightAnchor.constraint(equalToConstant: 270),
-
+        ])
+    }
+    
+    private func setupStackViewContraint(){
+        NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 17),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
         ])
-        renderUI(posts: recomendations)
     }
-    // MARK: - Private Methods
 
-    private func renderUI(posts: [Recommendation]) {
-        for post in posts {
+    private func renderUI(recomendations: [Recommendation]) {
+        for recomendation in recomendations {
             let view = UIView()
             view.backgroundColor = .white
             stackView.addArrangedSubview(view)
@@ -60,20 +75,20 @@ final class RecomendationViewCell: UITableViewCell {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFit
             imageView.clipsToBounds = true
-            imageView.image = UIImage(named: post.photo)
+            imageView.image = UIImage(named: recomendation.photo)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(imageView)
 
             let label = UILabel()
-            label.font = UIFont(name: standartFont, size: 8)
-            label.text = post.name
+            label.font = UIFont(name: Constants.standartFont, size: 8)
+            label.text = recomendation.name
             view.addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
 
             let button = UIButton()
-            button.setTitle(subscribeTitle, for: .normal)
+            button.setTitle(Constants.subscribeTitle, for: .normal)
             button.titleLabel?.textColor = .white
-            button.titleLabel?.font = UIFont(name: standartBoldFont, size: 10)
+            button.titleLabel?.font = UIFont(name: Constants.standartBoldFont, size: 10)
             button.backgroundColor = .systemBlue
             button.layer.cornerRadius = 8
             view.addSubview(button)
@@ -81,14 +96,14 @@ final class RecomendationViewCell: UITableViewCell {
 
             // Верхняя левая метка
             let topLeftLabel = UILabel()
-            topLeftLabel.text = recommendationTitle
+            topLeftLabel.text = Constants.recommendationTitle
             topLeftLabel.font = .boldSystemFont(ofSize: 10)
             contentView.addSubview(topLeftLabel)
             topLeftLabel.translatesAutoresizingMaskIntoConstraints = false
 
             // Верхняя правая метка
             let topRightLabel = UILabel()
-            topRightLabel.text = allRecommendationTitle
+            topRightLabel.text = Constants.allRecommendationTitle
             topRightLabel.textColor = .systemBlue
             topRightLabel.font = .boldSystemFont(ofSize: 10)
             contentView.addSubview(topRightLabel)

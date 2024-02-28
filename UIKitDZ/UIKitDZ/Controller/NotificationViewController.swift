@@ -5,19 +5,21 @@ import UIKit
 
 /// NotificationViewController - страница уведомлении
 final class NotificationViewController: UIViewController {
-    // MARK: - Private Properties
-
-    private let standartFont = "Verdana"
-    private let standartBoldFont = "Verdana-Bold"
-    private let today = "Сегодня"
-    private let thisWeek = "На этой неделе"
-    private let notification = "Уведомления"
-    private let notificationCell = "NotificationViewCell"
-    private var contacts = Source.makeContactsWithGroup()
+    // MARK: - Constants
+    private enum Constants {
+        static let standartFont = "Verdana"
+        static let standartBoldFont = "Verdana-Bold"
+        static let today = "Сегодня"
+        static let thisWeek = "На этой неделе"
+        static let notification = "Уведомления"
+        static let notificationCell = "NotificationViewCell"
+        
+        static var contacts = Source.makeContactsWithGroup()
+    }
 
     // MARK: - Visual Components
 
-    private let tableView: UITableView = .init()
+    private let tableView = UITableView()
 
     // MARK: - Life Cycle
 
@@ -25,7 +27,7 @@ final class NotificationViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-
+    // MARK: - Private Methods
     private func setupUI() {
         setupNavigationItem()
         setupTableView()
@@ -33,9 +35,9 @@ final class NotificationViewController: UIViewController {
 
     private func setupNavigationItem() {
         view.backgroundColor = .white
-        navigationItem.title = notification
+        navigationItem.title = Constants.notification
         navigationController?.navigationBar.prefersLargeTitles = true
-        if let font = UIFont(name: standartBoldFont, size: 24) {
+        if let font = UIFont(name: Constants.standartBoldFont, size: 24) {
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: font]
         }
         /// еще один вариант let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size:
@@ -46,7 +48,7 @@ final class NotificationViewController: UIViewController {
     private func setupTableView() {
         view.addSubview(tableView)
         // Регистрируем ячейки
-        tableView.register(NotificationViewCell.self, forCellReuseIdentifier: notificationCell)
+        tableView.register(NotificationViewCell.self, forCellReuseIdentifier: Constants.notificationCell)
         tableView.dataSource = self
         tableView.delegate = self
 
@@ -83,10 +85,12 @@ extension NotificationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return today
-        case 1: return thisWeek
+        case 0:
+            Constants.today
+        case 1:
+            Constants.thisWeek
         default:
-            return nil
+            nil
         }
     }
 
@@ -97,14 +101,14 @@ extension NotificationViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        contacts[section].count
+        Constants.contacts[section].count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: notificationCell, for: indexPath) as?
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.notificationCell, for: indexPath) as?
             NotificationViewCell else { return UITableViewCell() }
 
-        cell.configure(with: contacts[indexPath.section][indexPath.row])
+        cell.configure(with: Constants.contacts[indexPath.section][indexPath.row])
         return cell
     }
 
@@ -114,7 +118,7 @@ extension NotificationViewController: UITableViewDataSource {
         forRowAt indexPath: IndexPath
     ) {
         if editingStyle == .delete {
-            contacts[indexPath.section].remove(at: indexPath.row)
+            Constants.contacts[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
         }
     }

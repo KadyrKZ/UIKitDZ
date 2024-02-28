@@ -3,16 +3,17 @@
 
 import UIKit
 
-/// StoryViewCell
+/// StoryViewCell - ячейка для сторисов
 final class StoryViewCell: UITableViewCell {
     // MARK: Private Property
-
-    private let standartFont = "Verdana"
-    private let standartBoldFont = "Verdana-Bold"
-    private let myPhotoTitle = "myPhoto"
-    private let backPlusTitle = "backPlus"
-    private let yourStoryTitle = "Ваша история"
-    private let plusTitle = "+"
+    private enum Constants {
+        static let standartFont = "Verdana"
+        static let standartBoldFont = "Verdana-Bold"
+        static let myPhotoTitle = "myPhoto"
+        static let backPlusTitle = "backPlus"
+        static let yourStoryTitle = "Ваша история"
+        static let plusTitle = "+"
+    }
     private let scrollView = UIScrollView()
 
     private lazy var stackView: UIStackView = {
@@ -29,23 +30,35 @@ final class StoryViewCell: UITableViewCell {
         contentView.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
+        setupContraints()
+        renderUI(stories: posts)
+    }
+    // MARK: - Private Methods
+    private func setupContraints(){
+        setupScrollViewContraints()
+        setupStackViewContraints()
+    }
+    
+    private func setupScrollViewContraints(){
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             scrollView.heightAnchor.constraint(equalToConstant: 80),
-
+        ])
+    }
+    
+    private func setupStackViewContraints(){
+        NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 12),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
         ])
-        renderUI(stories: posts)
     }
-    // Оброботка визуала
+    
     private func renderUI(stories: [Story]) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         // Создаем первую ячейку с другой фотографией и текстом
@@ -56,27 +69,27 @@ final class StoryViewCell: UITableViewCell {
         let firstImageView = UIImageView()
         firstImageView.contentMode = .scaleAspectFit
         firstImageView.clipsToBounds = true
-        firstImageView.image = UIImage(named: myPhotoTitle)
+        firstImageView.image = UIImage(named: Constants.myPhotoTitle)
         firstImageView.translatesAutoresizingMaskIntoConstraints = false
         firstView.addSubview(firstImageView)
 
         let backImageView = UIImageView()
         backImageView.layer.cornerRadius = 10
-        backImageView.image = UIImage(named: backPlusTitle)
+        backImageView.image = UIImage(named: Constants.backPlusTitle)
         backImageView.translatesAutoresizingMaskIntoConstraints = false
         firstView.addSubview(backImageView)
 
         let addLabel = UILabel()
-        addLabel.font = UIFont(name: standartBoldFont, size: 15)
+        addLabel.font = UIFont(name: Constants.standartBoldFont, size: 15)
         addLabel.textColor = .white
-        addLabel.text = plusTitle
+        addLabel.text = Constants.plusTitle
         backImageView.addSubview(addLabel)
         addLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let firstLabel = UILabel()
-        firstLabel.font = UIFont(name: standartFont, size: 8)
+        firstLabel.font = UIFont(name: Constants.standartFont, size: 8)
         firstLabel.textColor = .gray
-        firstLabel.text = yourStoryTitle
+        firstLabel.text = Constants.yourStoryTitle
         firstView.addSubview(firstLabel)
         firstLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -102,7 +115,7 @@ final class StoryViewCell: UITableViewCell {
                 imageView.translatesAutoresizingMaskIntoConstraints = false
 
                 let label = UILabel()
-                label.font = UIFont(name: standartFont, size: 8)
+                label.font = UIFont(name: Constants.standartFont, size: 8)
                 label.text = post.name
                 view.addSubview(label)
                 label.translatesAutoresizingMaskIntoConstraints = false

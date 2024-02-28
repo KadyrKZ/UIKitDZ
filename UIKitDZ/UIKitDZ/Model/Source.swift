@@ -1,7 +1,7 @@
 // Source.swift
 // Copyright © RoadMap. All rights reserved.
 
-/// Структура для постов
+/// Структура для постов и истории
 struct Source {
     /// Истории
     let story: [Story] = [
@@ -41,48 +41,48 @@ struct Source {
             .init(
                 name: "Anna",
                 image: "lavanda123",
-                description: Description.description,
+                description: Description.goodPhotoText,
                 timeNotified: .today,
                 picture: "picture", isFollowing: false
             ),
             .init(
                 name: "Arina",
                 image: "lavanda123",
-                description: Description.description,
+                description: Description.goodPhotoText,
                 timeNotified: .today,
                 picture: "picture", isFollowing: false
             ),
             .init(
                 name: "Selena",
                 image: "lavanda123",
-                description: Description.description,
+                description: Description.wantVacationText,
                 timeNotified: .today,
                 picture: "picture", isFollowing: false
             ),
             .init(
                 name: "Selena",
                 image: "lavanda123",
-                description: Description.description,
+                description: Description.wantVacationText,
                 timeNotified: .today,
                 picture: "", isFollowing: false
             ),
             .init(
                 name: "Kadyr",
                 image: "lavanda123",
-                description: Description.description2,
+                description: Description.wantVacationText,
                 timeNotified: .thisWeek,
                 picture: "", isFollowing: true
             ), .init(
                 name: "Murka",
                 image: "lavanda123",
-                description: Description.description,
+                description: Description.wantVacationText,
                 timeNotified: .thisWeek,
                 picture: "", isFollowing: true
             ),
             .init(
                 name: "Lara",
                 image: "lavanda123",
-                description: Description.description,
+                description: Description.wantVacationText,
                 timeNotified: .thisWeek,
                 picture: "picture", isFollowing: false
             ),

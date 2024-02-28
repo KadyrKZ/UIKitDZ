@@ -5,10 +5,12 @@ import UIKit
 
 /// TabBarController - таббар для приложения
 final class TabBarController: UITabBarController {
-    private let feedTitle = "Лента"
-    private let notification = "Уведомления"
-    private let profile = "Профиль"
-
+    // MARK: - Constants
+    private enum Constants {
+        static let feedTitle = "Лента"
+        static let notification = "Уведомления"
+        static let profile = "Профиль"
+    }
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -19,13 +21,13 @@ final class TabBarController: UITabBarController {
     // MARK: Private Methods
 
     private func setupTabs() {
-        let feed = createNavigationController(with: feedTitle, and: .feed, viewController: ViewController())
+        let feed = createNavigationController(with: Constants.feedTitle, and: .feed, viewController: ViewController())
         let notification = createNavigationController(
-            with: notification,
+            with: Constants.notification,
             and: .notification,
             viewController: NotificationViewController()
         )
-        let profile = createNavigationController(with: profile, and: .profile, viewController: ProfileViewController())
+        let profile = createNavigationController(with: Constants.profile, and: .profile, viewController: ProfileViewController())
         setViewControllers([feed, notification, profile], animated: true)
     }
 

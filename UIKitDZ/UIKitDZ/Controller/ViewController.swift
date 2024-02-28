@@ -6,20 +6,18 @@ import UIKit
 /// ViewController - Лента для постов
 final class ViewController: UIViewController {
     // MARK: Private Properties
-
-    private let postTypes: [PostTypes] = [.stories, .firstPost, .recommendationPost, .otherPosts]
-    private let storyViewCell = "StoryViewCell"
-    private let recomendationViewCell = "RecomendationViewCell"
-    private let otherViewCell = "OtherViewCell"
-    private let firstViewCell = "FirstViewCell"
-    private let logoTitle = "RMLink"
-    private let logoFont = "Dancing Script"
-    private let message = "message"
-    // Контроллер реализован в TableView
-
+    private enum Constants {
+        static let postTypes: [PostTypes] = [.stories, .firstPost, .recommendationPost, .otherPosts]
+        static let storyViewCell = "StoryViewCell"
+        static let recomendationViewCell = "RecomendationViewCell"
+        static let otherViewCell = "OtherViewCell"
+        static let firstViewCell = "FirstViewCell"
+        static let logoTitle = "RMLink"
+        static let logoFont = "Dancing Script"
+        static let message = "message"
+    }
+    // MARK: - Visual Components
     private let tableView = UITableView()
-
-    // для работы с моделем делаю экземпляр
 
     private let source = Source()
 
@@ -30,8 +28,7 @@ final class ViewController: UIViewController {
         setupUI()
     }
 
-    // Функция для визуала
-
+    // MARK: - Visual Components
     private func setupUI() {
         view.backgroundColor = .white
         createHeaderButton()
@@ -41,10 +38,10 @@ final class ViewController: UIViewController {
     // Функция для конфигурации таблицу
     private func configuraTableView() {
         // Регистрирую все ячейки
-        tableView.register(StoryViewCell.self, forCellReuseIdentifier: storyViewCell)
-        tableView.register(RecomendationViewCell.self, forCellReuseIdentifier: recomendationViewCell)
-        tableView.register(OtherViewCell.self, forCellReuseIdentifier: otherViewCell)
-        tableView.register(FirstViewCell.self, forCellReuseIdentifier: firstViewCell)
+        tableView.register(StoryViewCell.self, forCellReuseIdentifier: Constants.storyViewCell)
+        tableView.register(RecomendationViewCell.self, forCellReuseIdentifier: Constants.recomendationViewCell)
+        tableView.register(OtherViewCell.self, forCellReuseIdentifier: Constants.otherViewCell)
+        tableView.register(FirstViewCell.self, forCellReuseIdentifier: Constants.firstViewCell)
         // Подключаю делегат и датасорс для работы с таблицой
         tableView.dataSource = self
         view.addSubview(tableView)
@@ -64,15 +61,15 @@ final class ViewController: UIViewController {
     private func createHeaderButton() {
         /// Логотип приложения с кастомным шрифтом
         let logoLabel = UILabel()
-        logoLabel.text = logoTitle
-        logoLabel.font = UIFont(name: logoFont, size: 22)
+        logoLabel.text = Constants.logoTitle
+        logoLabel.font = UIFont(name: Constants.logoFont, size: 22)
         logoLabel.sizeToFit()
 
         let leftBarButton = UIBarButtonItem(customView: logoLabel)
 
         /// Кнопка сообщение верху
         let imageButton = UIButton()
-        let image = UIImage(named: message)
+        let image = UIImage(named: Constants.message)
         imageButton.setImage(image, for: .normal)
         imageButton.tintColor = .black
         imageButton.widthAnchor.constraint(equalToConstant: 18).isActive = true
@@ -85,7 +82,7 @@ final class ViewController: UIViewController {
 // MARK: Расширение ViewController
 
 extension ViewController {
-    /// Типы постов
+    // MARK: - Types
     enum PostTypes {
         /// Истории
         case stories
@@ -102,55 +99,51 @@ extension ViewController {
 
 extension ViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        postTypes.count
+        Constants.postTypes.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch postTypes[section] {
+        switch Constants.postTypes[section] {
         case .stories, .firstPost, .recommendationPost:
-            return 1
+            1
         case .otherPosts:
-            return source.otherPosts.count
+            source.otherPosts.count
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch postTypes[indexPath.section] {
+        switch Constants.postTypes[indexPath.section] {
         case .stories:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: storyViewCell,
+                withIdentifier: Constants.storyViewCell,
                 for: indexPath
             ) as? StoryViewCell
             else { return UITableViewCell() }
-            let post = source.story
-            cell.setup(with: post)
+            cell.setup(with: source.story)
             return cell
         case .firstPost:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: firstViewCell,
+                withIdentifier: Constants.firstViewCell,
                 for: indexPath
             ) as? FirstViewCell
             else { return UITableViewCell() }
-            let post = source.firstPost
-            cell.setup(with: post)
+            cell.setup(with: source.otherPosts[0])
             return cell
         case .recommendationPost:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: recomendationViewCell,
+                withIdentifier: Constants.recomendationViewCell,
                 for: indexPath
             ) as? RecomendationViewCell
             else { return UITableViewCell() }
-            let post = source.recommendation
-            cell.setup(with: post)
+            cell.setup(with: source.recommendation)
             return cell
         case .otherPosts:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: otherViewCell,
+                withIdentifier: Constants.otherViewCell,
                 for: indexPath
             ) as? OtherViewCell
             else { return UITableViewCell() }
-            let post = source.otherPosts
-            cell.setup(with: post)
+            cell.setup(with: source.otherPosts)
             return cell
         }
     }
